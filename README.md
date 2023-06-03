@@ -1,3 +1,19 @@
+# running dev server or any other command for a specific workspace
+
+```
+pnpm exec -- turbo dev --filter <app>
+```
+
+alising the `pnpm exec --` to be `px`
+
+put this into ~/.bashrc: `alias px="pnpm exec --"` and do `source ~/.bashrc`
+
+you can now use it like this
+
+```
+px turbo dev --filter <app>
+```
+
 # Turborepo starter
 
 This is an official starter Turborepo.
@@ -79,3 +95,4 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
