@@ -1,4 +1,4 @@
-# running scripts with pnpm and turbo as a global package
+# running commands with pnpm and turbo as a global package
 
 ```sh
 pnpm exec -- turbo dev --filter <app>
