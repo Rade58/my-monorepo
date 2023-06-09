@@ -1,4 +1,4 @@
-# running commands with pnpm and turbo as a global package
+## running commands with pnpm and turbo as a global package
 
 ```sh
 pnpm exec -- turbo dev --filter <app>
@@ -6,15 +6,15 @@ pnpm exec -- turbo dev --filter <app>
 
 alising the `pnpm exec --` to be `px`
 
-put this into ~/.bashrc: `alias px="pnpm exec --"` and do `source ~/.bashrc`
+put this into ~/.bashrc (or ~/.zshrc): `alias px="pnpm exec --"` and do `source ~/.bashrc` or `source ~/.zshrc` command
 
-you can now use it like this
+you can now execute like this
 
 ```sh
 px turbo dev --filter <app>
 ```
 
-# To run specific script in workspace
+## To run specific script in workspace
 
 ```sh
 pnpm --filter <workspace> run <script> 
@@ -23,13 +23,13 @@ pnpm --filter <workspace> run <script>
 FOR EXAMPLE TO RUN `dev` SCRIPT
 
 ```
-pnpm --filter mock_invoice run dev
+pnpm --filter my_app run dev
 ```
 
-# to install/uninstall packages
+## to install/uninstall packages win pnpm in a specific workspace
 
 ```
-pnpm --filter mock_invoice <add/remove> @remix-run/node
+pnpm --filter <workspace> <add/remove> @remix-run/node
 ```
 
 <https://pnpm.io/cli/add#tldr>
@@ -40,9 +40,9 @@ there are more flags (peer) `--save-peer`
 
 # Turborepo starter related info
 
-This is an official starter Turborepo.
+This monorepo was started upon an official starter Turborepo.
 
-## Using this example
+## Started like this
 
 Run the following command:
 
@@ -54,15 +54,15 @@ npx create-turbo@latest
 
 This Turborepo includes the following packages/apps:
 
-### Apps and Packages
-
+<!-- ### Apps and Packages -->
+<!-- 
 - `docs`: a [Next.js](https://nextjs.org/) app
 - `web`: another [Next.js](https://nextjs.org/) app
 - `ui`: a stub React component library shared by both `web` and `docs` applications
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- `tsconfig`: `tsconfig.json`s used throughout the monorepo -->
+<!-- 
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/). -->
 
 ### Utilities
 
@@ -77,7 +77,6 @@ This Turborepo has some additional tools already setup for you:
 To build all apps and packages, run the following command:
 
 ```
-cd my-turborepo
 pnpm build
 ```
 
@@ -86,7 +85,6 @@ pnpm build
 To develop all apps and packages, run the following command:
 
 ```
-cd my-turborepo
 pnpm dev
 ```
 
