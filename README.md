@@ -1,6 +1,6 @@
-# running dev server or any other command for a specific workspace
+# running scripts with pnpm and turbo as a global package
 
-```
+```sh
 pnpm exec -- turbo dev --filter <app>
 ```
 
@@ -10,11 +10,35 @@ put this into ~/.bashrc: `alias px="pnpm exec --"` and do `source ~/.bashrc`
 
 you can now use it like this
 
-```
+```sh
 px turbo dev --filter <app>
 ```
 
-# Turborepo starter
+# To run specific script in workspace
+
+```sh
+pnpm --filter <workspace> run <script> 
+```
+
+FOR EXAMPLE TO RUN `dev` SCRIPT
+
+```
+pnpm --filter mock_invoice run dev
+```
+
+# to install/uninstall packages
+
+```
+pnpm --filter mock_invoice <add/remove> @remix-run/node
+```
+
+<https://pnpm.io/cli/add#tldr>
+
+For dev dependancies just ad `-D` flag, and for globals ad `-g` FLAG
+
+there are more flags (peer) `--save-peer`
+
+# Turborepo starter related info
 
 This is an official starter Turborepo.
 
