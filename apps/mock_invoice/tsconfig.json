@@ -1,0 +1,13 @@
+{
+  "extends": "tsconfig/remix.json",
+  "compilerOptions": {
+    "plugins": [{ "name": "remix" }],
+    "types": ["vitest/globals"],
+
+    "paths": {
+      "~/*": ["./app/*"]
+    }
+  },
+  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["./cypress", "./cypress.config.ts"]
+}
