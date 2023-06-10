@@ -1,3 +1,3 @@
-export default function AppSales() {
-  return <div>App Sales</div>;
+export default function Sales() {
+  return <div>Sales</div>;
 }

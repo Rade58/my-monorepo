@@ -1,3 +1,3 @@
-export default function AppReports() {
-  return <div>App Reports</div>;
+export default function Reports() {
+  return <div>Reports</div>;
 }

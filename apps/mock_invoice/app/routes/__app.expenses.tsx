@@ -1,3 +1,3 @@
-export default function AppExpenses() {
-  return <div>App Expenses</div>;
+export default function Expenses() {
+  return <div>Expenses</div>;
 }
