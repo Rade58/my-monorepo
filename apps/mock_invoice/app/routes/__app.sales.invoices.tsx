@@ -41,11 +41,8 @@ export default function InvoicesRoute() {
       <div className="flex items-center justify-between gap-4">
         <InvoicesInfo label="Overdue" amount={data.overdueAmount} />
         <div className="flex h-4 flex-1 overflow-hidden rounded-full">
-          <div className="bg-yellow-brand flex-1" />
-          <div
-            className="bg-green-brand"
-            style={{ width: `${dueSoonPercent}%` }}
-          />
+          <div className="bg-yellow-brand flex-1 border-2 border-success" />
+          <div className="bg-success" style={{ width: `${dueSoonPercent}%` }} />
         </div>
         <InvoicesInfo label="Due Soon" amount={data.dueSoonAmount} right />
       </div>
@@ -71,7 +68,7 @@ function InvoicesInfo({
   return (
     <div className={right ? "text-right" : ""}>
       <LabelText>{label}</LabelText>
-      <div className="text-[length:18px] text-black">
+      <div className="text-[length:18px] text-base-content">
         {currencyFormatter.format(amount)}
       </div>
     </div>
@@ -81,15 +78,15 @@ function InvoicesInfo({
 function InvoiceList({ children }: { children: React.ReactNode }) {
   const { invoiceListItems } = useLoaderData<typeof loader>();
   return (
-    <div className="flex overflow-hidden rounded-lg border border-gray-100">
-      <div className="w-1/2 border-r border-gray-100">
+    <div className="flex overflow-hidden rounded-lg border border-secondary">
+      <div className="w-1/2 border-r border-primary">
         <NavLink
           to="new"
           prefetch="intent"
           className={({ isActive }) =>
-            "block border-b-4 border-gray-100 py-3 px-4 hover:bg-gray-50" +
+            "block border-b-4 border-primary py-3 px-4 hover:bg-base-300" +
             " " +
-            (isActive ? "bg-gray-50" : "")
+            (isActive ? "bg-info" : "")
           }
         >
           <span className="flex gap-1">
@@ -103,16 +100,16 @@ function InvoiceList({ children }: { children: React.ReactNode }) {
               to={invoice.id}
               prefetch="intent"
               className={({ isActive }) =>
-                "block border-b border-gray-50 py-3 px-4 hover:bg-gray-50" +
+                "block border-b border-primary py-3 px-4 hover:bg-base-300" +
                 " " +
-                (isActive ? "bg-gray-50" : "")
+                (isActive ? "bg-base-200" : "")
               }
             >
               <div className="flex justify-between text-[length:14px] font-bold leading-6">
                 <div>{invoice.name}</div>
                 <div>{currencyFormatter.format(invoice.totalAmount)}</div>
               </div>
-              <div className="flex justify-between text-[length:12px] font-medium leading-4 text-gray-400">
+              <div className="flex justify-between text-[length:12px] font-medium leading-4 text-info">
                 <div>{invoice.number}</div>
                 <div
                   className={

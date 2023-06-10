@@ -105,7 +105,7 @@ export async function action({ request, params }: ActionArgs) {
 }
 
 const lineItemClassName =
-  "flex justify-between border-t border-gray-100 py-4 text-[14px] leading-[24px]";
+  "flex justify-between border-t border-info py-4 text-[14px] leading-[24px]";
 export default function InvoiceRoute() {
   const data = useLoaderData<typeof loader>();
   const location = useLocation();
@@ -124,9 +124,9 @@ export default function InvoiceRoute() {
         <span
           className={
             data.dueStatus === "paid"
-              ? "text-green-brand"
+              ? "text-primary"
               : data.dueStatus === "overdue"
-              ? "text-red-brand"
+              ? "text-secondary"
               : ""
           }
         >
@@ -279,7 +279,7 @@ export function ErrorBoundary() {
 
   if (error.status === 404) {
     return (
-      <div className="p-12 text-red-500">
+      <div className="p-12 text-error-content">
         No invoice found with the ID of {'"'}
         {params.invoiceId}
         {'"'}
@@ -292,8 +292,10 @@ export function ErrorBoundary() {
   return (
     <div className="absolute inset-0 flex justify-center bg-error pt-4">
       <div className="text-red-brand text-center">
-        <div className="text-[14px] font-bold">Oh snap!</div>
-        <div className="px-2 text-[12px]">There was a problem. Sorry.</div>
+        <div className="text-[14px] font-bold text-error-content">Oh snap!</div>
+        <div className="px-2 text-[12px] text-error-content">
+          There was a problem. Sorry.
+        </div>
       </div>
     </div>
   );
