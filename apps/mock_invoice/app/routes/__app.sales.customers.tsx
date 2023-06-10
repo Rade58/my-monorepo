@@ -37,14 +37,14 @@ export default function Customers() {
 
   return (
     <div className="flex overflow-hidden rounded-lg border-2 border-secondary">
-      <div className="w-1/2 border-r border-gray-100">
+      <div className="w-1/2 border-r border-primary">
         <NavLink
           to="new"
           prefetch="intent"
           className={({ isActive }) =>
-            "block border-b-4 border-gray-100 py-3 px-4 hover:bg-gray-50" +
+            "block border-b-4 border-secondary py-3 px-4 hover:bg-accent" +
             " " +
-            (isActive ? "bg-gray-50" : "")
+            (isActive ? "bg-info" : "")
           }
         >
           <span className="flex gap-1">
@@ -59,15 +59,15 @@ export default function Customers() {
               state={{ customer }}
               prefetch="intent"
               className={({ isActive }) =>
-                "block border-b border-gray-50 py-3 px-4 hover:bg-gray-50" +
+                "block border-b border-secondary py-3 px-4 hover:bg-base-300" +
                 " " +
-                (isActive ? "bg-gray-50" : "")
+                (isActive ? "bg-base-300" : "")
               }
             >
               <div className="flex justify-between text-[length:14px] font-bold leading-6">
                 <div>{customer.name}</div>
               </div>
-              <div className="flex justify-between text-[length:12px] font-medium leading-4 text-gray-400">
+              <div className="flex justify-between text-[length:12px] font-medium leading-4 text-secondary-focus">
                 <div>{customer.email}</div>
               </div>
             </NavLink>
