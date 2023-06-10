@@ -21,8 +21,8 @@ export default function AppRoute() {
     minDuration: 300,
   });
   return (
-    <div className="relative flex h-full rounded-lg bg-white text-gray-600">
-      <div className="border-r border-gray-100 bg-gray-50">
+    <div className="relative flex h-full rounded-lg bg-base-100 text-gray-600">
+      <div className="border-r border-base-200 bg-base-300">
         <div className="p-4">
           <div className="flex flex-wrap items-center gap-1">
             <Link to=".">
@@ -31,15 +31,15 @@ export default function AppRoute() {
             <Spinner visible={showSpinner} />
           </div>
           <div className="h-7" />
-          <div className="flex flex-col font-bold text-gray-800">
+          <div className="flex flex-col font-bold">
             <NavItem to="dashboard">Dashboard</NavItem>
             <NavItem to="accounts">Accounts</NavItem>
             <NavItem to="sales">Sales</NavItem>
             <NavItem to="expenses">Expenses</NavItem>
             <NavItem to="reports">Reports</NavItem>
             <a
-              href="https://github.com/FrontendMasters/advanced-remix"
-              className="my-1 flex gap-1 py-1 px-2 pr-16 text-[length:14px]"
+              href="https://github.com/Rade58/my-monorepo/tree/main/apps/mock_invoice"
+              className="my-1 flex gap-1 py-1 px-2 pr-16 text-[length:14px] text-secondary"
             >
               GitHub <UpRightArrowIcon />
             </a>
@@ -49,7 +49,7 @@ export default function AppRoute() {
               action="/logout"
               className="my-1 py-1 px-2 pr-16 text-[length:14px]"
             >
-              <button type="submit" className="flex gap-1 font-bold">
+              <button type="submit" className="btn btn-secondary btn-xs">
                 Logout <LogoutIcon />
               </button>
             </Form>
@@ -69,8 +69,8 @@ function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
       to={to}
       prefetch="intent"
       className={({ isActive }) =>
-        `my-1 py-1 px-2 pr-16 text-[length:14px] ${
-          isActive ? "rounded-md bg-gray-100" : ""
+        `link link-primary hover:link-accent no-underline my-1 py-1 px-2 pr-16 text-[length:14px] ${
+          isActive ? "rounded-md link-accent" : ""
         }`
       }
     >
