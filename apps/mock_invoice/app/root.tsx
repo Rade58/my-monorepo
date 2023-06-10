@@ -1,6 +1,8 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
+
+import type { ShouldRevalidateFunction } from "@remix-run/react";
 import {
   Links,
   LiveReload,
@@ -8,12 +10,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 
 import themes from "../themes/list";
 
 import { getUser } from "~/session.server";
 import stylesheet from "~/tailwind.css";
+
+import LogoutTimer from "./components/auth/LogoutTimer";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -24,7 +29,18 @@ export const loader = async ({ request }: LoaderArgs) => {
   return json({ user: await getUser(request) });
 };
 
+export const shouldRevalidate: ShouldRevalidateFunction = ({
+  // actionResult,
+  // formMethod,
+  // currentParams,
+  formAction,
+}) => {
+  return formAction === "/logout" || formAction === "/login";
+};
+
 export default function App() {
+  const { user } = useLoaderData<typeof loader>();
+
   return (
     <html lang="en" className="h-full" data-theme={themes[0]}>
       <head>
@@ -35,6 +51,7 @@ export default function App() {
       </head>
       <body className="h-full">
         <Outlet />
+        {user && <LogoutTimer />}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
