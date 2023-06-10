@@ -1,10 +1,9 @@
 import Logo from "./Logo";
 
 export const inputClasses =
-  "text-lg w-full rounded border border-gray-500 px-2 py-1";
+  "input input-bordered input-primary w-full max-w-xs";
 
-export const submitButtonClasses =
-  "w-full rounded bg-green-500 py-2 px-4 text-white hover:bg-green-600 focus:bg-green-400";
+export const submitButtonClasses = "btn btn-secondary";
 
 export const dangerButtonClasses =
   "w-full rounded bg-red-600 py-2 px-4 text-white hover:bg-red-700 focus:bg-red-500";
