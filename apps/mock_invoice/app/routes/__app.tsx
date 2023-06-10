@@ -70,7 +70,7 @@ function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
       prefetch="intent"
       className={({ isActive }) =>
         `link link-primary hover:link-accent no-underline my-1 py-1 px-2 pr-16 text-[length:14px] ${
-          isActive ? "rounded-md link-accent" : ""
+          isActive ? "rounded-md border border-primary link-info" : ""
         }`
       }
     >

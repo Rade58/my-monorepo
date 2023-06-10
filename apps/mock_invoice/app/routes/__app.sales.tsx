@@ -11,6 +11,9 @@ export async function loader({ request }: LoaderArgs) {
     getFirstInvoice(),
     getFirstCustomer(),
   ]);
+
+  console.log({ firstCustomer, firstInvoice });
+
   return json({
     firstInvoiceId: firstInvoice?.id,
     firstCustomerId: firstCustomer?.id,
@@ -18,18 +21,38 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 const linkClassName = ({ isActive }: { isActive: boolean }) =>
-  isActive ? "font-bold text-accent" : "";
+  isActive ? "font-bold text-info" : "";
 
 export default function SalesRoute() {
   const data = useLoaderData<typeof loader>();
   const matches = useMatches();
-  const indexMatches = matches.some((m) => m.id === "routes/__app/sales/index");
+  // const indexMatches = matches.some((m) => m.id === "routes/__app/sales/index");
+
+  // console.log(JSON.stringify({ matches }, null, 2));
+
   const invoiceMatches = matches.some(
-    (m) => m.id === "routes/__app/sales/invoices"
+    (m) => m.id === "routes/__app.sales.invoices"
   );
   const customerMatches = matches.some(
-    (m) => m.id === "routes/__app/sales/customers"
+    (m) => m.id === "routes/__app.sales.customers"
   );
+  const overviewMatches =
+    matches[matches.length - 1].id === "routes/__app.sales";
+  const subscriptionMatches = matches.some(
+    (m) => m.id === "routes/__app.sales.subscriptions"
+  );
+  const depositsMatches = matches.some(
+    (m) => m.id === "routes/__app.sales.deposits"
+  );
+
+  /* console.log({
+    invoiceMatches,
+    customerMatches,
+    overviewMatches,
+    subscriptionMatches,
+    depositsMatches,
+  }); */
+
   return (
     <div className="relative h-full p-10">
       <h1 className="font-display text-3xl text-primary">Sales</h1>
@@ -38,7 +61,7 @@ export default function SalesRoute() {
         <NavLink
           to="."
           className={`link link-secondary no-underline ${linkClassName({
-            isActive: indexMatches,
+            isActive: overviewMatches,
           })}`}
         >
           Overview
@@ -46,7 +69,9 @@ export default function SalesRoute() {
         <NavLink
           prefetch="intent"
           to="subscriptions"
-          className={`link link-secondary no-underline ${linkClassName}`}
+          className={`link link-secondary no-underline ${linkClassName({
+            isActive: subscriptionMatches,
+          })}`}
         >
           Subscriptions
         </NavLink>
@@ -77,7 +102,9 @@ export default function SalesRoute() {
         <NavLink
           prefetch="intent"
           to="deposits"
-          className={`link link-secondary no-underline ${linkClassName}`}
+          className={`link link-secondary no-underline ${linkClassName({
+            isActive: depositsMatches,
+          })}`}
         >
           Deposits
         </NavLink>

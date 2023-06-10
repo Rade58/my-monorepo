@@ -56,8 +56,8 @@ model Invoice {
   invoiceDate DateTime @default(now())
   dueDate     DateTime
 
-  custometId String
-  customer   Customer @relation(fields: [custometId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   deposits  Deposit[]
   lineItems LineItem[]
