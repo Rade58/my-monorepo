@@ -1,6 +1,7 @@
 import { useLocation, useSubmit } from "@remix-run/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Dialog } from "@reach/dialog";
+import { submitButtonClasses, dangerButtonClasses } from "../common";
 
 export default function LogoutTimer() {
   const [status, setStatus] = useState<"idle" | "show-modal">("idle");
@@ -48,4 +49,29 @@ export default function LogoutTimer() {
     setStatus("idle");
     resetTimers();
   }
+
+  return (
+    <Dialog
+      aria-label="Pending Logout Notification"
+      isOpen={status === "show-modal"}
+      onDismiss={closeModal}
+    >
+      <div>
+        <h1 className="text-d-h3 mb-4">Are you still there?</h1>
+        <p>
+          You are going to be logged out due to inactivity. Close this modal to
+          stay logged in.
+        </p>
+        <div className="h-8" />
+        <div className="flex items-end gap-8">
+          <button onClick={closeModal} className={submitButtonClasses}>
+            Remain Logged In
+          </button>
+          <button onClick={logout} className={dangerButtonClasses}>
+            Logout
+          </button>
+        </div>
+      </div>
+    </Dialog>
+  );
 }
