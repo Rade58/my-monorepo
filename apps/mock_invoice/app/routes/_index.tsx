@@ -1,7 +1,7 @@
 import type { V2_MetaFunction } from "@remix-run/node";
 
 import { Form, Link, NavLink, Outlet, useNavigation } from "@remix-run/react";
-import { useOptionalUser } from "~/utils";
+// import { useOptionalUser } from "~/utils";
 import clsx from "clsx";
 import { useSpinDelay } from "spin-delay";
 

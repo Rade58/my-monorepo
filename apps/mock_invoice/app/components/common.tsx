@@ -1,3 +1,5 @@
+import Logo from "./Logo";
+
 export const inputClasses =
   "text-lg w-full rounded border border-gray-500 px-2 py-1";
 
@@ -26,7 +28,10 @@ export function FullFakebooksLogo({
     sm: [`h-4 w-4`, `text-d-p-sm`],
     lg: [`h-12 w-12`, `text-d-h2`],
   }[size];
-  return (
+
+  return <Logo />;
+
+  /* return (
     <div
       className={`flex items-center ${
         position === "center" ? "justify-center" : ""
@@ -36,7 +41,7 @@ export function FullFakebooksLogo({
       <div className="w-1" />
       <div className={`font-display ${textSize}`}>Fakebooks</div>
     </div>
-  );
+  ); */
 }
 
 export function FakebooksLogo({ className }: { className: string }) {
