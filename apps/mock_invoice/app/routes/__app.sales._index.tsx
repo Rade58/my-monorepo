@@ -1,6 +1,5 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Outlet } from "@remix-run/react";
 import { requireUser } from "~/session.server";
 
 export async function loader({ request }: LoaderArgs) {
@@ -8,11 +7,6 @@ export async function loader({ request }: LoaderArgs) {
   return json({});
 }
 
-export default function Subscriptions() {
-  return (
-    <div>
-      Woo. Subs. Money.
-      <Outlet />
-    </div>
-  );
+export default function SalesOverview() {
+  return <div>Overview of sales</div>;
 }

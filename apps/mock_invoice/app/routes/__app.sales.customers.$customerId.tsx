@@ -1,6 +1,12 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useCatch, useLoaderData, useParams } from "@remix-run/react";
+import {
+  Link,
+  isRouteErrorResponse,
+  useLoaderData,
+  useParams,
+  useRouteError,
+} from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { getCustomerInfo, getCustomerDetails } from "~/models/customer.server";
 import { requireUser } from "~/session.server";
@@ -48,7 +54,7 @@ export default function CustomerRoute() {
             <tr key={invoiceDetails.id} className={lineItemClassName}>
               <td>
                 <Link
-                  className="text-blue-600 underline"
+                  className="text-primary underline"
                   to={`../../invoices/${invoiceDetails.id}`}
                 >
                   {invoiceDetails.number}
@@ -77,11 +83,15 @@ export default function CustomerRoute() {
     </div>
   );
 }
-export function CatchBoundary() {
-  const caught = useCatch();
+export function ErrorBoundary() {
+  const error = useRouteError();
   const params = useParams();
 
-  if (caught.status === 404) {
+  if (!isRouteErrorResponse(error)) {
+    return <h1>Unknown Error</h1>;
+  }
+
+  if (error.status === 404) {
     return (
       <div className="p-12 text-red-500">
         No customer found with the ID of {'"'}
@@ -91,5 +101,7 @@ export function CatchBoundary() {
     );
   }
 
-  throw new Error(`Unexpected caught response with status: ${caught.status}`);
+  // throw new Error(`Unexpected caught response with status: ${error.status}`);
+
+  return <div>An unexpected error occurred: {error.statusText}</div>;
 }
