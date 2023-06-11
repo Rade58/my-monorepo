@@ -157,7 +157,7 @@ export default function InvoiceRoute() {
 function Deposits() {
   const data = useLoaderData<typeof loader>();
   // 🐨 call useFetcher here to get the fetcher for the form
-  const fetcher = useFetcher();
+  const neuDepositFetcher = useFetcher();
 
   return (
     <div>
@@ -178,7 +178,7 @@ function Deposits() {
         <div>None yet</div>
       )}
       {/* 🐨 change this to your fetcher.Form */}
-      <fetcher.Form
+      <neuDepositFetcher.Form
         method="post"
         className="grid grid-cols-1 gap-x-4 gap-y-2 lg:grid-cols-2"
       >
@@ -235,7 +235,7 @@ function Deposits() {
             </button>
           </div>
         </div>
-      </fetcher.Form>
+      </neuDepositFetcher.Form>
     </div>
   );
 }
