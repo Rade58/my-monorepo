@@ -216,8 +216,14 @@ function Deposits() {
     neuDepositFetcher.data?.errors; // | UseDataFunctionReturn<typeof action>["errors"]
   // | ReturnType<typeof useActionData>["error"]
   // | undefined;
-  console.log({ errors });
+  // console.log({ errors });
+
   useEffect(() => {
+    // console.log(
+    // document.activeElement,
+    // formRef.current.elements?.intent
+    // formRef.current.elements
+    // );
     // EXERCISE FOR FOCUS MENAGEMENT
     // 🐨 If there's an error on the amount, focus the amount element
 
@@ -236,13 +242,12 @@ function Deposits() {
       formRef.current?.elements.amount?.focus();
     } else if (errors?.depositDate) {
       formRef.current?.elements.depositDate?.focus();
-    } else {
+    } else if (document.activeElement === formRef.current.elements.intent) {
+      console.log({ true: true });
+
       formRef.current.reset();
       formRef.current?.elements.amount?.focus();
     }
-
-    // ---------------------------------------------------------
-    // ---------------------------------------------------------
   }, [neuDepositFetcher.state, formRef, errors]);
 
   // -----------------------------------------------------------
