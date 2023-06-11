@@ -170,7 +170,17 @@ function Deposits() {
   // 🐨 add a useEffect that resets the form when the submission is finished
   // 💰 (newDepositFetcher.state === "idle")
   const formRef = useRef<HTMLFormElement>(null);
-  const deposits = [...data.deposits];
+  const deposits: typeof data.deposits = [...data.deposits];
+
+  if (neuDepositFetcher.submission) {
+    deposits.push({
+      id: "neu",
+      amount: neuDepositFetcher.submission.formData.get("amount"),
+      depositDateFormatted: parseDate(
+        neuDepositFetcher.submission.formData.get("depositDate")
+      ).toLocaleDateString(),
+    });
+  }
 
   return (
     <div>
