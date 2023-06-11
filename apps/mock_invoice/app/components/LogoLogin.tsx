@@ -1,6 +1,6 @@
 export default function Logo() {
   return (
-    <div className="w-28 border-0 border-primary hover:scale-110 transition-transform duration-500">
+    <div className="w-28 border-0 border-primary">
       <svg
         // width="3503"
         // height="1860"
