@@ -12,7 +12,7 @@ export async function loader({ request }: LoaderArgs) {
     getFirstCustomer(),
   ]);
 
-  console.log({ firstCustomer, firstInvoice });
+  // console.log({ firstCustomer, firstInvoice });
 
   return json({
     firstInvoiceId: firstInvoice?.id,
@@ -37,7 +37,7 @@ export default function SalesRoute() {
     (m) => m.id === "routes/__app.sales.customers"
   );
   const overviewMatches =
-    matches[matches.length - 1].id === "routes/__app.sales";
+    matches[matches.length - 1].id === "routes/__app.sales._index";
   const subscriptionMatches = matches.some(
     (m) => m.id === "routes/__app.sales.subscriptions"
   );
