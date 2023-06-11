@@ -21,7 +21,7 @@ export default function AppRoute() {
     minDuration: 300,
   });
   return (
-    <div className="relative flex h-full rounded-lg bg-base-100 text-gray-600">
+    <div className="relative flex h-full rounded-lg bg-base-100">
       <div className="border-r border-base-200 bg-base-300">
         <div className="p-4">
           <div className="flex flex-wrap items-center gap-1">
@@ -70,7 +70,7 @@ function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
       prefetch="intent"
       className={({ isActive }) =>
         `link link-primary hover:link-accent no-underline my-1 py-1 px-2 pr-16 text-[length:14px] ${
-          isActive ? "rounded-md border border-primary link-info" : ""
+          isActive ? "border-l-2 border-primary link-info" : ""
         }`
       }
     >
