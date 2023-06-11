@@ -59,6 +59,7 @@ export function CustomerCombobox({ error }: { error?: string | null }) {
         name="customerId"
         type="hidden"
         value={selectedCustomer?.id ?? ""}
+        className="input input-primary"
       />
       <div className="flex flex-wrap items-center gap-1">
         <label {...cb.getLabelProps()}>
@@ -73,7 +74,7 @@ export function CustomerCombobox({ error }: { error?: string | null }) {
       {/* <div {...cb.getComboboxProps()}> */}
       <input
         {...cb.getInputProps({
-          className: clsx("text-lg w-full border border-gray-500 px-2 py-1", {
+          className: clsx("input input-primary", {
             "rounded-t rounded-b-0": displayMenu,
             rounded: !displayMenu,
           }),

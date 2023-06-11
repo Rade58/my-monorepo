@@ -200,7 +200,10 @@ function LineItemFormFields({
   const actionData = useActionData<typeof action>();
   const errors = actionData?.errors.lineItems[lineItemClientId];
   return (
-    <fieldset key={lineItemClientId} className="border-b-2 py-2">
+    <fieldset
+      key={lineItemClientId}
+      className="border-b-2 border-secondary py-2"
+    >
       <div className="flex gap-2">
         <button type="button" title="Remove Line Item" onClick={onRemoveClick}>
           <MinusIcon />
