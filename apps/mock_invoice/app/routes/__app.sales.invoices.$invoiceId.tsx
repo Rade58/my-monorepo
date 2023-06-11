@@ -1,4 +1,5 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
+import type { useActionData } from "@remix-run/react/dist/components";
 import { json } from "@remix-run/node";
 import {
   Link,
@@ -155,6 +156,16 @@ export default function InvoiceRoute() {
   );
 }
 
+interface DepositFormControlsCollection extends HTMLFormControlsCollection {
+  amount?: HTMLInputElement;
+  depositDate?: HTMLInputElement;
+  note?: HTMLInputElement;
+  intent?: HTMLButtonElement;
+}
+interface DepositFormElement extends HTMLFormElement {
+  readonly elements: DepositFormControlsCollection;
+}
+
 function Deposits() {
   const data = useLoaderData<typeof loader>();
 
@@ -173,7 +184,7 @@ function Deposits() {
   // 💰 you can convert the depositDate to a Date object via parseDate and then use toLocaleDateString()
   // 🐨 add a useEffect that resets the form when the submission is finished
   // 💰 (newDepositFetcher.state === "idle")
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef</* HTMLFormElement */ DepositFormElement>(null);
   const deposits: typeof data.deposits = [...data.deposits];
 
   // console.log(neuDepositFetcher.state, neuDepositFetcher.data);
@@ -200,11 +211,39 @@ function Deposits() {
     }
   }
 
+  // EXERCISE FOR FOCUS MANAGEMENT
+  const errors: undefined | { amount: string; depositDate: string } =
+    neuDepositFetcher.data?.errors; // | UseDataFunctionReturn<typeof action>["errors"]
+  // | ReturnType<typeof useActionData>["error"]
+  // | undefined;
+  console.log({ errors });
   useEffect(() => {
-    if (neuDepositFetcher.state === "idle" && formRef.current) {
-      formRef.current.reset();
+    // EXERCISE FOR FOCUS MENAGEMENT
+    // 🐨 If there's an error on the amount, focus the amount element
+
+    // 🐨 If there's an error on the desposit date, focus the depositDate element
+
+    // 🐨 Focus on the amount field
+    // 💯 In what situation would we want to *not* change focus and *not* reset the form at this point?
+    if (!formRef.current) {
+      return;
     }
-  }, [neuDepositFetcher.state, formRef]);
+    if (neuDepositFetcher.state !== "idle") {
+      return;
+    }
+
+    if (errors?.amount) {
+      formRef.current?.elements.amount?.focus();
+    } else if (errors?.depositDate) {
+      formRef.current?.elements.depositDate?.focus();
+    } else {
+      formRef.current.reset();
+      formRef.current?.elements.amount?.focus();
+    }
+
+    // ---------------------------------------------------------
+    // ---------------------------------------------------------
+  }, [neuDepositFetcher.state, formRef, errors]);
 
   // -----------------------------------------------------------
   // -----------------------------------------------------------
@@ -231,6 +270,7 @@ function Deposits() {
       )}
       {/* 🐨 change Form to your neuDepositFetcher.Form */}
       <neuDepositFetcher.Form
+        noValidate
         ref={formRef}
         method="post"
         className="grid grid-cols-1 gap-x-4 gap-y-2 lg:grid-cols-2"
@@ -240,6 +280,12 @@ function Deposits() {
             <LabelText>
               <label htmlFor="depositAmount">Amount</label>
             </LabelText>
+            {/* ADDED THSI TO DISPLAY ERROR IF WE HAVE ANY */}
+            {errors?.amount ? (
+              <em id="amount-error" className="mb-1 text-xs text-error">
+                {errors.amount}
+              </em>
+            ) : null}
           </div>
           <input
             id="depositAmount"
@@ -256,6 +302,11 @@ function Deposits() {
             <LabelText>
               <label htmlFor="depositDate">Date</label>
             </LabelText>
+            {errors?.depositDate ? (
+              <em id="depositdate-error" className="mb-1 text-xs text-error">
+                {errors.depositDate}
+              </em>
+            ) : null}
           </div>
           <input
             id="depositDate"
