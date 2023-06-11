@@ -21,38 +21,40 @@ export default function AppRoute() {
     minDuration: 300,
   });
   return (
-    <div className="relative flex h-full rounded-lg bg-base-100">
-      <div className="border-r border-base-200 bg-base-300">
-        <div className="p-4">
-          <div className="flex flex-wrap items-center gap-1">
-            <Link to=".">
-              <FullFakebooksLogo size="sm" position="left" />
-            </Link>
-            <Spinner visible={showSpinner} />
-          </div>
-          <div className="h-7" />
-          <div className="flex flex-col font-bold">
-            <NavItem to="dashboard">Dashboard</NavItem>
-            <NavItem to="accounts">Accounts</NavItem>
-            <NavItem to="sales">Sales</NavItem>
-            <NavItem to="expenses">Expenses</NavItem>
-            <NavItem to="reports">Reports</NavItem>
-            <a
-              href="https://github.com/Rade58/my-monorepo/tree/main/apps/mock_invoice"
-              className="my-1 flex gap-1 py-1 px-2 pr-16 text-[length:14px] text-secondary"
-            >
-              GitHub <UpRightArrowIcon />
-            </a>
+    <div className="relative flex h-full rounded-lg bg-base-100 border-0 border-primary">
+      <div className="border-r border-base-200 bg-base-300 w-[204px]">
+        <div className="w-[204px] fixed h-[100vh] top-0 left-0 bg-base-300">
+          <div className="p-4">
+            <div className="flex flex-wrap items-center gap-1">
+              <Link to=".">
+                <FullFakebooksLogo size="sm" position="left" />
+              </Link>
+              <Spinner visible={showSpinner} />
+            </div>
+            <div className="h-7" />
+            <div className="flex flex-col font-bold">
+              <NavItem to="dashboard">Dashboard</NavItem>
+              <NavItem to="accounts">Accounts</NavItem>
+              <NavItem to="sales">Sales</NavItem>
+              <NavItem to="expenses">Expenses</NavItem>
+              <NavItem to="reports">Reports</NavItem>
+              <a
+                href="https://github.com/Rade58/my-monorepo/tree/main/apps/mock_invoice"
+                className="my-1 flex gap-1 py-1 px-2 pr-16 text-[length:14px] text-secondary"
+              >
+                GitHub <UpRightArrowIcon />
+              </a>
 
-            <Form
-              method="post"
-              action="/logout"
-              className="my-1 py-1 px-2 pr-16 text-[length:14px]"
-            >
-              <button type="submit" className="btn btn-secondary btn-xs">
-                Logout <LogoutIcon />
-              </button>
-            </Form>
+              <Form
+                method="post"
+                action="/logout"
+                className="my-1 py-1 px-2 pr-16 text-[length:14px]"
+              >
+                <button type="submit" className="btn btn-secondary btn-xs">
+                  Logout <LogoutIcon />
+                </button>
+              </Form>
+            </div>
           </div>
         </div>
       </div>
