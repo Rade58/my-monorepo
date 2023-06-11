@@ -178,8 +178,10 @@ function Deposits() {
 
   // console.log(neuDepositFetcher.state, neuDepositFetcher.data);
 
-  if (neuDepositFetcher.state === "submitting") {
-    const formAmount = neuDepositFetcher.formData.get("amount");
+  if (
+    /* neuDepositFetcher.state === "submitting" */ neuDepositFetcher.formData
+  ) {
+    const formAmount = Number(neuDepositFetcher.formData.get("amount"));
     const depositDate = neuDepositFetcher.formData.get("depositDate");
 
     if (typeof formAmount === "number" && typeof depositDate === "string") {
