@@ -8,5 +8,5 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 export default function SalesOverview() {
-  return <div>Overview of sales</div>;
+  return <div>Overview</div>;
 }

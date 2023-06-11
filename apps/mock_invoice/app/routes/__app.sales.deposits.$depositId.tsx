@@ -2,7 +2,6 @@ import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import {
   Form,
   isRouteErrorResponse,
-  useCatch,
   useLoaderData,
   useParams,
   useRouteError,
@@ -56,7 +55,7 @@ export default function DepositRoute() {
             <span className="pl-1">{data.depositNote}</span>
           </span>
         ) : (
-          <span className="text-m-p-sm md:text-d-p-sm uppercase text-gray-500">
+          <span className="text-m-p-sm md:text-d-p-sm uppercase text-base-content">
             No note
           </span>
         )}
