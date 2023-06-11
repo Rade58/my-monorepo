@@ -19,7 +19,7 @@ import { requireUser } from "~/session.server";
 import { currencyFormatter, parseDate } from "~/utils";
 import { createDeposit } from "~/models/deposit.server";
 import invariant from "tiny-invariant";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export async function loader({ request, params }: LoaderArgs) {
   await requireUser(request);
@@ -160,7 +160,11 @@ function Deposits() {
 
   // - FOR NON-NAV MUTATION EXERCISE
   // 🐨 call useFetcher here to get the fetcher for the form
-  const neuDepositFetcher = useFetcher();
+  const neuDepositFetcher =
+    useFetcher /* <{
+    amount: number;
+    depositDate: string;
+  }> */();
 
   // - FOR OPTIMISTIC-UI EXERCISE
   // 🐨 create a ref for the form (so we can reset it once the submission is finished)
@@ -172,15 +176,36 @@ function Deposits() {
   const formRef = useRef<HTMLFormElement>(null);
   const deposits: typeof data.deposits = [...data.deposits];
 
-  if (neuDepositFetcher.submission) {
-    deposits.push({
-      id: "neu",
-      amount: neuDepositFetcher.submission.formData.get("amount"),
-      depositDateFormatted: parseDate(
-        neuDepositFetcher.submission.formData.get("depositDate")
-      ).toLocaleDateString(),
-    });
+  // console.log(neuDepositFetcher.state, neuDepositFetcher.data);
+
+  if (neuDepositFetcher.state === "submitting") {
+    const formAmount = neuDepositFetcher.formData.get("amount");
+    const depositDate = neuDepositFetcher.formData.get("depositDate");
+
+    if (typeof formAmount === "number" && typeof depositDate === "string") {
+      // if (neuDepositFetcher.formAction) {
+      // if (neuDepositFetcher.state === "submitting") {
+      deposits.push({
+        id: "neu",
+        amount: formAmount,
+        // amount: neuDepositFetcher.data.amount,
+        depositDateFormatted: parseDate(depositDate).toLocaleDateString(),
+        // depositDateFormatted: parseDate(
+        //   neuDepositFetcher.data.depositDate
+        // ).toLocaleDateString(),
+      });
+      // }
+    }
   }
+
+  useEffect(() => {
+    if (neuDepositFetcher.state === "idle" && formRef.current) {
+      formRef.current.reset();
+    }
+  }, [neuDepositFetcher.state, formRef]);
+
+  // -----------------------------------------------------------
+  // -----------------------------------------------------------
 
   return (
     <div>
