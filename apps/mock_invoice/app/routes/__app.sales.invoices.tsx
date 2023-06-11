@@ -41,11 +41,8 @@ export default function InvoicesRoute() {
       <div className="flex items-center justify-between gap-4">
         <InvoicesInfo label="Overdue" amount={data.overdueAmount} />
         <div className="flex h-4 flex-1 overflow-hidden rounded-full">
-          <div className="bg-success flex-1 border-2 border-success" />
-          <div
-            className="border-0 border-success"
-            style={{ width: `${dueSoonPercent}%` }}
-          />
+          <div className="bg-warning flex-1 border-2 border-success" />
+          <div className="bg-success" style={{ width: `${dueSoonPercent}%` }} />
         </div>
         <InvoicesInfo label="Due Soon" amount={data.dueSoonAmount} right />
       </div>
