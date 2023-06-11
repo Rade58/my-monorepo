@@ -2,6 +2,7 @@ import type { ActionArgs, LoaderArgs, V2_MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 import { useEffect, useRef } from "react";
+import Logo from "~/components/LogoLogin";
 
 import { verifyLogin } from "~/models/user.server";
 import { createUserSession, getUserId } from "~/session.server";
@@ -78,6 +79,9 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-full flex-col justify-center">
       <div className="mx-auto w-full max-w-md px-8">
+        <div className="flex mb-9 justify-center border-0 border-primary">
+          <Logo />
+        </div>
         <Form method="post" className="space-y-6">
           <div>
             <label
@@ -97,7 +101,7 @@ export default function LoginPage() {
                 autoComplete="email"
                 aria-invalid={actionData?.errors?.email ? true : undefined}
                 aria-describedby="email-error"
-                className="input input-primary"
+                className="w-full input input-primary"
               />
               {actionData?.errors?.email ? (
                 <div className="pt-1 text-error" id="email-error">
@@ -123,7 +127,7 @@ export default function LoginPage() {
                 autoComplete="current-password"
                 aria-invalid={actionData?.errors?.password ? true : undefined}
                 aria-describedby="password-error"
-                className="input input-primary"
+                className="w-full input input-primary"
               />
               {actionData?.errors?.password ? (
                 <div className="pt-1 text-error" id="password-error">
@@ -134,7 +138,7 @@ export default function LoginPage() {
           </div>
 
           <input type="hidden" name="redirectTo" value={redirectTo} />
-          <button type="submit" className="btn btn-secondary">
+          <button type="submit" className="btn btn-primary">
             Log in
           </button>
           <div className="flex items-center justify-between">
