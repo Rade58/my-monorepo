@@ -44,6 +44,7 @@ export function CustomerCombobox({ error }: { error?: string | null }) {
   // WE ARE USING FETCHER
   const customerFetcher = useFetcher();
   const id = useId();
+  // CUSTOMES DATA WE GOT FROM THE FETCHER
   const customers =
     (customerFetcher.data as CustomerSearchResult | null)?.customers ?? [];
   const [selectedCustomer, setSelectedCustomer] = useState<
