@@ -40,8 +40,8 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
   formAction,
 }) => {
   // console.log({ formAction });
-
-  /* if (formAction?.startsWith("/sales/invoices/")) {
+  /* 
+  if (formAction?.startsWith("/sales/invoices/")) {
     return false;
   } */
 
