@@ -24,6 +24,7 @@ export async function loader({ request }: LoaderArgs) {
 function validateCustomerId(customerId: string) {
   // the database won't let us create an invoice without a customer
   // so all we need to do is make sure this is not an empty string
+
   return customerId === "" ? "Please select a customer" : null;
 }
 
@@ -117,6 +118,8 @@ export default function NewInvoice() {
     <div className="relative p-10">
       <h2 className="font-display mb-4">New Invoice</h2>
       <Form method="post" className="flex flex-col gap-4">
+        {/* As you can se we rendered this component over here */}
+
         <CustomerCombobox error={actionData?.errors.customerId} />
         <div>
           <div className="flex flex-wrap items-center gap-1">

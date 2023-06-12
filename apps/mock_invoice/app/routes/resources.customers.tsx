@@ -18,6 +18,9 @@ type CustomerSearchResult = {
 // A loader , ONLY A BECKEND (IT ACTS LIKE API ENDPOINT)
 
 export async function loader({ request }: LoaderArgs) {
+  // verify if the user is lgged in
+  // perform a customer search
+
   await requireUser(request);
   const url = new URL(request.url);
   const query = url.searchParams.get("query");
