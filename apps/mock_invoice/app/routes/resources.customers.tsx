@@ -13,6 +13,10 @@ type CustomerSearchResult = {
   customers: Awaited<ReturnType<typeof searchCustomers>>;
 };
 
+// WE DO NOT HAVE DEFAULT EXPORT
+// SO THIS MEANS THAT THIS 'PAGE' WILL ONLY HAVE
+// A loader , ONLY A BECKEND (IT ACTS LIKE API ENDPOINT)
+
 export async function loader({ request }: LoaderArgs) {
   await requireUser(request);
   const url = new URL(request.url);
@@ -24,6 +28,14 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 type Customer = CustomerSearchResult["customers"][number];
+
+// AS YOU CAN SEE THIS IS NOT DEFAULT EXPORT
+// THIS COMMONLY IS NOT A GOOD PRACTICE
+// BUT IN THIS CASE IT WILL DO THE JOB
+// WE ARE IMPORTING AND RENDERING CustomerCombobox COMPONENT
+// IN THIS PAGE
+// /routes/__app.sales.invoices.new.tsx
+//
 
 export function CustomerCombobox({ error }: { error?: string | null }) {
   const customerFetcher = useFetcher();
