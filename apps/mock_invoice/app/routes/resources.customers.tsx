@@ -87,7 +87,7 @@ export function CustomerCombobox({ error }: { error?: string | null }) {
           <LabelText>Customer</LabelText>
         </label>
         {error ? (
-          <em id="customer-error" className="text-d-p-xs text-red-600">
+          <em id="customer-error" className="text-d-p-xs text-error">
             {error}
           </em>
         ) : null}
@@ -107,7 +107,7 @@ export function CustomerCombobox({ error }: { error?: string | null }) {
       <ul
         {...cb.getMenuProps({
           className: clsx(
-            "absolute z-10 bg-white shadow-lg rounded-b w-full border border-t-0 border-gray-500 max-h-[180px] overflow-scroll",
+            "absolute z-10 bg-base-300 shadow-lg rounded-b w-full border border-t-0 border-secondary max-h-[180px] overflow-scroll",
             { hidden: !displayMenu }
           ),
         })}
@@ -116,7 +116,7 @@ export function CustomerCombobox({ error }: { error?: string | null }) {
           ? customers.map((customer, index) => (
               <li
                 className={clsx("cursor-pointer py-1 px-2", {
-                  "bg-green-200": cb.highlightedIndex === index,
+                  "bg-secondary": cb.highlightedIndex === index,
                 })}
                 key={customer.id}
                 {...cb.getItemProps({ item: customer, index })}
