@@ -70,12 +70,9 @@ export default function CustomerRoute() {
   return (
     <div className="relative p-10">
       <div className="text-[length:14px] font-bold leading-6">
-        {/* @ts-expect-error */}
         {data.customerInfo.email}
       </div>
       <div className="text-[length:32px] font-bold leading-[40px]">
-        {/* @ts-expect-error */}
-
         {data.customerInfo.name}
       </div>
       <div className="h-4" />
