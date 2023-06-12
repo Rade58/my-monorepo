@@ -17,8 +17,8 @@ export default function LogoutTimer() {
   // 🐨 add the useSubmit hook here so you can trigger a logout
   const submit = useSubmit();
   // I've shortened the logoutTime and modalTime with these to test this more easily:
-  const logoutTime = /* 1000 * 60 * 60 * 24; */ 15000;
-  const modalTime = /* logoutTime - 1000 * 60 * 2; */ 6000;
+  const logoutTime = 1000 * 60 * 60 * 24; /* 15000; (for testing) */
+  const modalTime = logoutTime - 1000 * 60 * 2; /* 6000; (for testing) */
 
   const modalTimer = useRef<ReturnType<typeof setTimeout>>();
   const logoutTimer = useRef<ReturnType<typeof setTimeout>>();
