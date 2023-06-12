@@ -88,8 +88,10 @@ export default function CustomerRoute() {
         - Await "errorElement" prop can be the ErrorFallback component (imported from "~/components")
       */}
       {/* JUST FOR YOU TO KNOW AWS LAMBDA DOESN'T SUPPORT STREAMING */}
+
+      {/* fallback will be shown as we wait suspending component to render */}
       <Suspense fallback={<InvoiceDetailsFallback />}>
-        <Await
+        <Await // a suspending component
           resolve={data.customerDetails}
           errorElement={
             <div className="relative h-full">
