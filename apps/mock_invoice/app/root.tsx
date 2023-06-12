@@ -43,8 +43,8 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
 
   /* if (formAction?.startsWith("/sales/invoices/")) {
     return false;
-  }
- */
+  } */
+
   if (formAction === "/logout" || formAction === "/login") {
     return false;
   }
