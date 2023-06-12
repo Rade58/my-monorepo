@@ -41,6 +41,7 @@ type Customer = CustomerSearchResult["customers"][number];
 //
 
 export function CustomerCombobox({ error }: { error?: string | null }) {
+  // WE ARE USING FETCHER
   const customerFetcher = useFetcher();
   const id = useId();
   const customers =
@@ -57,6 +58,10 @@ export function CustomerCombobox({ error }: { error?: string | null }) {
     items: customers,
     itemToString: (item) => (item ? item.name : ""),
     onInputValueChange: (changes) => {
+      // WE ARE GOING TO USE FETCHER TO SUBMIT THE QUERYAND GET BACK THE CUSTOMER
+      // ARE QUERY IS THIS VALUE: changes.inputValue
+      // USE submit METHOD AND DEFINE ACTION URL
+
       if (!changes.inputValue) return;
 
       customerFetcher.submit(
