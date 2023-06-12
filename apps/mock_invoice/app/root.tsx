@@ -1,7 +1,6 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-
 import type { ShouldRevalidateFunction } from "@remix-run/react";
 import {
   Links,
@@ -29,14 +28,26 @@ export const loader = async ({ request }: LoaderArgs) => {
   return json({ user: await getUser(request) });
 };
 
+// (this is not unstable anymore)
+// 🐨 Add unstable_shouldReload here and only reload the data if the transition
+// has a submission where the action is "/login" or "/logout"
+
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   // actionResult,
   // formMethod,
   // currentParams,
+  defaultShouldRevalidate,
   formAction,
 }) => {
-  return formAction === "/logout" || formAction === "/login";
+  if (formAction === "/logout" || formAction === "/login") {
+    return false;
+  }
+
+  return defaultShouldRevalidate;
 };
+
+// ------------------------------------------------------------
+// ------------------------------------------------------------
 
 export default function App() {
   const { user } = useLoaderData<typeof loader>();
