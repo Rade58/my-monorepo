@@ -24,9 +24,8 @@ export default function Customers() {
   const { customers } = useLoaderData<typeof loader>();
 
   // 🐨 get the transition from useTransition
-  // 💰 use transition.location?.state to get the customer we're transitioning to
   const transition = useNavigation();
-
+  // 💰 use transition.location?.state to get the customer we're transitioning to
   let loadingCustomer: LoadingCustomer | undefined;
   console.log(JSON.stringify({ transition }));
   if (transition.location?.state) {
