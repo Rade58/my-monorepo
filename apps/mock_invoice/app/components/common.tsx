@@ -179,3 +179,35 @@ export function SpinnerIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function InvoiceDetailsFallback() {
+  return (
+    <div>
+      <div className="flex h-[56px] items-center border-t border-primary">
+        <div className="h-[14px] w-full animate-pulse rounded bg-base-300">
+          &nbsp;
+        </div>
+      </div>
+      <div className="flex h-[56px] items-center border-t border-primary">
+        <div className="h-[14px] w-full animate-pulse rounded bg-base-300">
+          &nbsp;
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ErrorFallback({
+  message = "There was a problem. Sorry.",
+}: {
+  message?: string;
+}) {
+  return (
+    <div className="absolute inset-0 flex justify-center bg-error pt-4">
+      <div className="text-white">
+        <div className="text-[14px] font-bold">Oh snap!</div>
+        <div className="px-2 text-[12px]">{message}</div>
+      </div>
+    </div>
+  );
+}
