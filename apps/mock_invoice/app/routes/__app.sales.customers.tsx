@@ -22,6 +22,9 @@ export async function loader({ request }: LoaderArgs) {
 
 export default function Customers() {
   const { customers } = useLoaderData<typeof loader>();
+
+  // 🐨 get the transition from useTransition
+  // 💰 use transition.location?.state to get the customer we're transitioning to
   const transition = useNavigation();
 
   let loadingCustomer: LoadingCustomer | undefined;
@@ -30,6 +33,8 @@ export default function Customers() {
     loadingCustomer = (transition.location?.state as any)?.customer;
   }
 
+  // 💯 to avoid a flash of loading state, you can use useSpinDelay
+  // from spin-delay to determine whether to show the skeleton
   const showSkeleton = useSpinDelay(Boolean(loadingCustomer), {
     delay: 200,
     minDuration: 300,
@@ -75,6 +80,11 @@ export default function Customers() {
         </div>
       </div>
       <div className="flex w-1/2 flex-col justify-between">
+        {/*
+          🐨 if we're loading a customer, then render the
+          <CustomerSkeleton /> (defined below) instead of
+          the <Outlet />
+        */}
         {loadingCustomer && showSkeleton ? (
           <CustomerSkeleton
             name={loadingCustomer.name}
@@ -100,13 +110,13 @@ function CustomerSkeleton({ name, email }: { name: string; email: string }) {
       <div className="text-m-h3 font-bold leading-8">Invoices</div>
       <div className="h-4" />
       <div>
-        <div className="flex h-[56px] items-center border-t border-gray-400">
-          <div className="h-[14px] w-full animate-pulse rounded bg-gray-400">
+        <div className="flex h-[86px] items-center border-t border-gray-400">
+          <div className="h-[46px] w-full animate-pulse rounded bg-gray-400">
             &nbsp;
           </div>
         </div>
-        <div className="flex h-[56px] items-center border-t border-gray-400">
-          <div className="h-[14px] w-full animate-pulse rounded bg-gray-400">
+        <div className="flex h-[86px] items-center border-t border-gray-400">
+          <div className="h-[46px] w-full animate-pulse rounded bg-gray-400">
             &nbsp;
           </div>
         </div>

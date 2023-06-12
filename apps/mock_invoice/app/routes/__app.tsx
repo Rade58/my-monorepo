@@ -91,7 +91,7 @@ function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
 function Spinner({ visible }: { visible: boolean }) {
   return (
     <SpinnerIcon
-      className={clsx("animate-spin transition-opacity", {
+      className={clsx("animate-spin transition-opacity text-info", {
         "opacity-0": !visible,
         "opacity-100": visible,
       })}
