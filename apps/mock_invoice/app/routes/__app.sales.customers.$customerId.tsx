@@ -35,6 +35,8 @@ export async function loader({ request, params }: LoaderArgs) {
   ]); */
   //
   const customerInfo = await getCustomerInfo(customerId);
+  // console.log({ customerInfo });
+
   // ----------------------------------------------------------
   // ----------------------------------------------------------
 
@@ -44,7 +46,7 @@ export async function loader({ request, params }: LoaderArgs) {
   if (!customerDetails || !customerInfo) {
     throw new Response("not found", { status: 404 });
   } */
-  if (customerInfo) {
+  if (!customerInfo) {
     throw new Response("not found", { status: 404 });
   }
   const customerDetailsPromise = getCustomerDetails(customerId);
