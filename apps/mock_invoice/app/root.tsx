@@ -50,9 +50,12 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
     return false;
   } */
 
-  if (formAction === "/logout" || formAction === "/login") {
+  // THIS WAS PART OF EXERCISE FOR REVALIDATION OPTIMIZATION
+  // BUT I NEEDED TO REVALIDATE IN CASE OF OTHER EXERCISES THAT CONCENR USER
+  // EXISTANCE
+  /* if (formAction === "/logout" || formAction === "/login") {
     return false;
-  }
+  } */
 
   return defaultShouldRevalidate;
 };
@@ -62,7 +65,7 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
 
 export default function App() {
   const { user } = useLoaderData<typeof loader>();
-
+  console.log({ user });
   return (
     <html lang="en" className="h-full" data-theme={themes[1]}>
       <head>
@@ -74,7 +77,7 @@ export default function App() {
       <body className="h-full">
         <Outlet />
         {/* THIS IS THE PART OF THE EXERCISE FOR THE IMPERATIVE MUTATIONS */}
-        {user && <LogoutTimer />}
+        {user ? <LogoutTimer /> : null}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
