@@ -17,7 +17,12 @@ import themes from "../themes/list";
 import { getUser } from "~/session.server";
 import stylesheet from "~/tailwind.css";
 
+// WE WILL USE THIS COMPONENT IN `IMPERATIVE MUTATION`
+// EXERCISE(YOU CAN CHANGE LOGOUT PERIOD)
 import LogoutTimer from "./components/auth/LogoutTimer";
+// WE CONDITIONALLY RENDERED THIS COMPONENT
+// FOR THE REST OF THE CODE FOR THE IMPERATIVE MUTATION EXERCISE
+// LOOK INSIDE THE LogoutTimer COMPONENT
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -68,6 +73,7 @@ export default function App() {
       </head>
       <body className="h-full">
         <Outlet />
+        {/* THIS IS THE PART OF THE EXERCISE FOR THE IMPERATIVE MUTATIONS */}
         {user && <LogoutTimer />}
         <ScrollRestoration />
         <Scripts />
