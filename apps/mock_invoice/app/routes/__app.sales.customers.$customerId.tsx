@@ -78,7 +78,10 @@ export default function CustomerRoute() {
       <div className="h-4" />
       <div className="text-m-h3 font-bold leading-8">Invoices</div>
       <div className="h-4" />
-      {/*
+      {/*You can use these components even if you don't return defer
+      // this requires streaming from React 18
+      // we enabled streaming inside /app/entry.server.tsx 
+      // 
         🐨 Wrap this in <Suspense><Await /></Suspense> components with:
         - Suspense "fallback" prop should be <InvoiceDetailsFallback /> (imported from "~/components")
         - Await "resolve" prop as data.customerDetails
