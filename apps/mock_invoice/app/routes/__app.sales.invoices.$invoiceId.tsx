@@ -243,8 +243,6 @@ function Deposits() {
     } else if (errors?.depositDate) {
       formRef.current?.elements.depositDate?.focus();
     } else if (document.activeElement === formRef.current.elements.intent) {
-      console.log({ true: true });
-
       formRef.current.reset();
       formRef.current?.elements.amount?.focus();
     }

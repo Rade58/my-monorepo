@@ -39,6 +39,12 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
   defaultShouldRevalidate,
   formAction,
 }) => {
+  // console.log({ formAction });
+
+  /* if (formAction?.startsWith("/sales/invoices/")) {
+    return false;
+  }
+ */
   if (formAction === "/logout" || formAction === "/login") {
     return false;
   }
