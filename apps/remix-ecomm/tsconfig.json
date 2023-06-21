@@ -1,0 +1,11 @@
+{
+  "extends": "tsconfig/remix.json",
+  "compilerOptions": {
+    "plugins": [{ "name": "remix" }],
+
+    "paths": {
+      "~/*": ["./app/*"]
+    }
+  },
+  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+}
