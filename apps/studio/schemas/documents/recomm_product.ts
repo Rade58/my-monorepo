@@ -19,6 +19,10 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      options: {
+        source: 'name',
+        maxLength: 96,
+      },
     },
     {
       name: 'description',
@@ -28,7 +32,7 @@ export default defineType({
     {
       name: 'stripeProductId',
       title: 'Stripe Product Id',
-      type: 'document',
+      type: 'string',
     },
     {
       name: 'images',
