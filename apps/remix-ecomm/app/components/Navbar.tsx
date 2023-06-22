@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react";
 import Logo from "./Logo";
 
 export default function NavBar() {
@@ -26,7 +27,7 @@ export default function NavBar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
+              <Link to="/temp">Temp</Link>
             </li>
             <li>
               <a>Parent</a>
@@ -45,17 +46,17 @@ export default function NavBar() {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">
+        <Link className="btn btn-ghost normal-case text-xl" to="/">
           <div className="w-[56px]">
             <Logo />
             {/* daisyUI */}
           </div>
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Item 1</a>
+            <Link to="temp">Temp</Link>
           </li>
           <li tabIndex={0}>
             <details>
