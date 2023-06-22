@@ -247,6 +247,12 @@ importers:
       '@vercel/node':
         specifier: ^2.10.3
         version: 2.10.3
+      classnames:
+        specifier: ^2.3.2
+        version: 2.3.2
+      daisyui:
+        specifier: ^3.0.22
+        version: 3.0.22(postcss@8.4.22)(ts-node@10.9.1)
       isbot:
         specifier: ^3.6.8
         version: 3.6.8

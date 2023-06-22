@@ -6,6 +6,7 @@ export default {
     extend: {},
   },
   plugins: [
+    require("daisyui"),
     require('@tailwindcss/aspect-ratio'),
   ],
 } satisfies Config
