@@ -11,6 +11,7 @@ import {
 import stylesheet from "~/tailwind.css";
 import themes from "../themes/list";
 import NavBar from "./components/Navbar";
+import type { ReactNode } from "react";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -18,6 +19,15 @@ export const links: LinksFunction = () => [
 /* export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ]; */
+
+function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <>
+      <NavBar />
+      <main>{children}</main>
+    </>
+  );
+}
 
 export default function App() {
   return (
@@ -29,11 +39,12 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <NavBar />
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <RootLayout>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </RootLayout>
       </body>
     </html>
   );
