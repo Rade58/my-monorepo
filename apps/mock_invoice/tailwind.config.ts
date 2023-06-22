@@ -8,7 +8,7 @@ export default {
   plugins: [require("daisyui")],
   daisyui: {
     styled: true,
-    // themes: ["fantasy", "dracula"],
+
     themes: themes,
     base: true,
     utils: true,
