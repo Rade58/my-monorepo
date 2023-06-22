@@ -45,8 +45,8 @@ export default function NavBar() {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl pb-2">
-          <div className="w-[72px]">
+        <a className="btn btn-ghost normal-case text-xl">
+          <div className="w-[56px]">
             <Logo />
             {/* daisyUI */}
           </div>
