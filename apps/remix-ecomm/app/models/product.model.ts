@@ -1,15 +1,23 @@
 import client from "~/lib/sanity";
 
+type Products = {
+  name: string;
+  price: number;
+  slug: { current: string };
+  image: string;
+}[];
+
 interface Product {
   name: string;
   price: number;
+  description: string;
   slug: { current: string };
   image: string;
 }
 
 export async function getAllProducts() {
   try {
-    const data: Product[] = await client.fetch(/* groq */ `
+    const data: Products = await client.fetch(/* groq */ `
       *[_type == "recomm_product"]{
         name,
         price,
@@ -37,5 +45,34 @@ export async function getAllProducts() {
 
 export async function getSingleBySlug(slug: string) {
   //
-  //
+  try {
+    const product = await client.fetch(
+      /* groq */ `
+      *[_type == "recomm_product" && $slug == slug.current]{
+        name,
+        price,
+        slug,
+        description,
+        stripeProductId,
+        images[]{
+          asset -> {
+            url
+          }
+        }
+      }
+    `,
+      {
+        slug,
+      }
+    );
+
+    if (!product) {
+      return undefined;
+    }
+
+    return product;
+  } catch (err) {
+    console.error(err);
+    return undefined;
+  }
 }
