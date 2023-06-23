@@ -38,11 +38,14 @@ export default defineType({
       name: 'images',
       type: 'array',
       title: 'Images',
+
       of: [
         {
           type: 'image',
+          // Don't know why I did this, I never used it
           options: {
             hotspot: true,
+            crop: true,
           },
         },
       ],
