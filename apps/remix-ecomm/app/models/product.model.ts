@@ -1,14 +1,21 @@
 import client from "~/lib/sanity";
 
+interface Product {
+  name: string;
+  price: number;
+  slug: { current: string };
+  image: string;
+}
+
 export async function getAllProducts() {
   try {
-    const data = await client.fetch(/* groq */ `
+    const data: Product[] = await client.fetch(/* groq */ `
       *[_type == "recomm_product"]{
         name,
         price,
         slug,
-        description,
-        // images[0] {
+        // description,
+        // images[] {
         //   asset -> {
         //     url,
         //     hotspot {
@@ -23,6 +30,12 @@ export async function getAllProducts() {
 
     return data;
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    return [];
   }
+}
+
+export async function getSingleBySlug(slug: string) {
+  //
+  //
 }

@@ -1,8 +1,11 @@
-import type { V2_MetaFunction } from "@remix-run/node";
+import { json, redirect, type V2_MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-
+import Image from "remix-image";
 import type { LoaderArgs } from "@remix-run/node";
 import { getAllProducts } from "~/models/product.model";
+
+import { blured_hero } from "~/lib/util/blured_hero";
+import { blured_product } from "~/lib/util/blured_product";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -12,24 +15,30 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export async function loader(loaderArgs: LoaderArgs) {
-  const products = getAllProducts();
+  const products = await getAllProducts();
 
-  return products;
+  if (!products) {
+    throw new Response("not found", { status: 404 });
+  }
+
+  return json({ products });
 }
 
 export default function Index() {
-  const loaderData = useLoaderData<typeof loader>();
+  const { products } = useLoaderData<typeof loader>();
 
-  console.log({ loaderData });
+  // console.log({ loaderData });
 
   return (
     <>
-      <section className="lg:w-[80vw] lg:mx-auto border border-primary">
+      <section className="lg:w-[80vw] lg:mx-auto border-0 border-primary">
         <div className="hero min-h-screen">
           <div className="hero-content flex-col lg:flex-row-reverse">
-            <img
+            <Image
+              blurDataURL={blured_hero}
               src="/images/uap-hero.png"
               className="max-w-sm rounded-lg shadow-2xl"
+              alt="hero"
             />
             <div>
               <h1 className="text-5xl font-bold">
@@ -52,7 +61,32 @@ export default function Index() {
           </div>
         </div>
       </section>
-      <section id="products"></section>
+      <section id="products" className="w-[96vw] lg:w-[80vw] mx-auto">
+        <div className="py-24 sm:py-32 lg:pt-32">
+          <div className="mt-6 grid grid-col-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+            {products.map((product) => (
+              <Link
+                key={product.slug.current}
+                className="group relative"
+                to={`/product/${product.slug.current}`}
+              >
+                <div className="w-full h-56 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80 border-0 border-primary">
+                  <Image
+                    // blurDataURL={blured_product}
+                    src={product.image}
+                    alt={`image of ${product.name}`}
+                    className="w-full h-full object-center object-contain"
+                  />
+                </div>
+                <h3 className="mt-4 text-sm">{product.name}</h3>
+                <p className="mt-1 text-sm font-medium text-base-content opacity-50">
+                  $ {product.price}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 
