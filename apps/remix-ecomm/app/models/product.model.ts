@@ -46,7 +46,7 @@ export async function getAllProducts() {
 export async function getSingleBySlug(slug: string) {
   //
   try {
-    const product = await client.fetch(
+    const product: Product | undefined = await client.fetch(
       /* groq */ `
       *[_type == "recomm_product" && $slug == slug.current]{
         name,
