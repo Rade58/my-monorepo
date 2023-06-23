@@ -6,15 +6,17 @@ import { getSingleBySlug } from "~/models/product.model";
 export async function loader(loaderArgs: LoaderArgs) {
   const product = await getSingleBySlug(loaderArgs.params.slug || "");
 
-  console.log(JSON.stringify({ product }, null, 2));
+  // console.log(JSON.stringify({ product }, null, 2));
 
-  return json({ params: loaderArgs.params });
+  if (!product) {
+    throw new Response("not found", { status: 404 });
+  }
+
+  return json({ product });
 }
 
 export default function Products() {
-  const data = useLoaderData<typeof loader>();
+  const { product } = useLoaderData<typeof loader>();
 
-  const slug = data.params.slug;
-
-  return <div>Product {slug}</div>;
+  return <pre>{JSON.stringify({ product }, null, 2)}</pre>;
 }
