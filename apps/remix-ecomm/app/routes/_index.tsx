@@ -9,23 +9,30 @@ export const meta: V2_MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <img
-          src="/images/uap-hero.png"
-          className="max-w-sm rounded-lg shadow-2xl"
-        />
-        <div>
-          <h1 className="text-5xl font-bold">Box Office News!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-          <button className="btn btn-primary">Get Started</button>
+    <section className="w-[80vw] mx-auto">
+      <div className="hero min-h-screen">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <img
+            src="/images/uap-hero.png"
+            className="max-w-sm rounded-lg shadow-2xl"
+          />
+          <div>
+            <h1 className="text-5xl font-bold">
+              A myriad of gadgets awaits your exploration!
+            </h1>
+            <h2 className="text-3xl pt-4">
+              Discover impactful tech at our shop!
+            </h2>
+            <p className="py-6">
+              Welcome to UAP Toys, your ultimate tech destination! Discover
+              innovation and excitement as we bring you the latest gadgets and
+              accessories. Elevate your tech experience with us!
+            </p>
+            <button className="btn btn-primary">Shop Now</button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 
   /*  return (
