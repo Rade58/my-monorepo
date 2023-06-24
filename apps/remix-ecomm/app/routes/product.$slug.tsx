@@ -109,7 +109,7 @@ export default function Products() {
                         href="#"
                         className={classNames(
                           "absolute inset-0 rounded-md",
-                          "ring-blue-400 focus:z-10 focus:outline-none focus:ring-2"
+                          "ring-rose-600 focus:z-10 focus:outline-none focus:ring-2"
                         )}
                       />
                     </li>
@@ -139,7 +139,7 @@ export default function Products() {
         </Tab.Group>
       </div>
 
-      {JSON.stringify({ product }, null, 2)}
+      {/* {JSON.stringify({ product }, null, 2)} */}
     </pre>
   );
 }
