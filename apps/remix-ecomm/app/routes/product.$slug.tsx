@@ -78,8 +78,8 @@ export default function Products() {
   });
 
   return (
-    <>
-      <div className="w-full max-w-md px-2 py-16 sm:px-0">
+    <section className="border-0 border-primary mx-6 lg:mx-14 flex flex-wrap justify-between">
+      <div className="w-full max-w-lg px-2 py-16 sm:px-0">
         <Tab.Group>
           <Tab.Panels>
             {images.map(({ asset: { url, id } }, idx) => {
@@ -87,8 +87,8 @@ export default function Products() {
                 <Tab.Panel
                   key={idx}
                   className={classNames(
-                    "rounded-xl bg-white p-3",
-                    "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
+                    "rounded-xl p-3 pb-9 border-0 border-primary",
+                    "ring-primary ring-opacity-60 ring-offset-2 ring-offset-primary-focus focus:outline-none focus:ring-2"
                   )}
                 >
                   <Image src={url} alt={`${product.name} image`} />
@@ -96,18 +96,16 @@ export default function Products() {
               );
             })}
           </Tab.Panels>
-          <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+          <Tab.List className="flex space-x-1 rounded-xl bg-secondary/20 p-1">
             {images.map(({ asset: { url, id } }, idx) => {
               return (
                 <Tab
                   key={idx}
                   className={({ selected }) =>
                     classNames(
-                      "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
-                      "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-                      selected
-                        ? "bg-white shadow"
-                        : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                      "w-full rounded-lg py-2.5 text-sm font-medium leading-5",
+                      "ring-primary ring-opacity-60 ring-offset-2 ring-offset-primary-focus focus:outline-none focus:ring-2",
+                      selected ? "shadow bg-primary" : "hover:bg-primary/[0.12]"
                     )
                   }
                 >
@@ -117,71 +115,10 @@ export default function Products() {
             })}
           </Tab.List>
         </Tab.Group>
-        {/* 
-        <Tab.Group>
-          <Tab.Panels className="mt-2">
-            {Object.values(categories).map((posts, idx) => (
-              <Tab.Panel
-                key={idx}
-                className={classNames(
-                  "rounded-xl bg-white p-3",
-                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
-                )}
-              >
-                <ul>
-                  {posts.map((post) => (
-                    <li
-                      key={post.id}
-                      className="relative rounded-md p-3 hover:bg-gray-100"
-                    >
-                      <h3 className="text-sm font-medium leading-5">
-                        {post.title}
-                      </h3>
-
-                      <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
-                        <li>{post.date}</li>
-                        <li>&middot;</li>
-                        <li>{post.commentCount} comments</li>
-                        <li>&middot;</li>
-                        <li>{post.shareCount} shares</li>
-                      </ul>
-
-                      <a
-                        href="#"
-                        className={classNames(
-                          "absolute inset-0 rounded-md",
-                          "ring-blue-400 focus:z-10 focus:outline-none focus:ring-2"
-                        )}
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </Tab.Panel>
-            ))}
-          </Tab.Panels>
-          <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
-            {Object.keys(categories).map((category) => (
-              <Tab
-                key={category}
-                className={({ selected }) =>
-                  classNames(
-                    "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
-                    "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-                    selected
-                      ? "bg-white shadow"
-                      : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
-                  )
-                }
-              >
-                {category}
-              </Tab>
-            ))}
-          </Tab.List>
-        </Tab.Group> 
-        */}
       </div>
+      <div>{/*  */}</div>
 
       {/* {JSON.stringify({ product }, null, 2)} */}
-    </>
+    </section>
   );
 }
