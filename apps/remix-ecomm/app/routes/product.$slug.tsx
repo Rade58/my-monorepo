@@ -28,7 +28,7 @@ export default function Products() {
   // console.log({ images, product });
 
   return (
-    <section className="border-0 border-primary mx-auto lg:mx-14 flex flex-wrap-reverse justify-center mt-6 items-center content-center">
+    <section className="border-0 border-primary mx-4 flex flex-wrap-reverse justify-center mt-6 items-center content-center">
       <div className="w-full max-w-lg px-2 py-16 sm:px-0">
         <Tab.Group>
           <Tab.Panels>
@@ -79,6 +79,9 @@ export default function Products() {
         </p>
         <p className="border-0 border-primary">{product.description}</p>
         {/*  */}
+        <button className="btn btn-block btn-secondary mt-9">
+          Add To Cart
+        </button>
       </div>
 
       {/* {JSON.stringify({ product }, null, 2)} */}
