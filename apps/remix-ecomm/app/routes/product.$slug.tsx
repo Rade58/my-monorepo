@@ -28,8 +28,11 @@ export default function Products() {
   // console.log({ images, product });
 
   return (
-    <section className="border-0 border-primary mx-4 flex flex-wrap-reverse justify-center mt-6 items-center content-center">
-      <div className="w-full max-w-lg px-2 py-16 sm:px-0">
+    <section className="border-0 border-primary mx-4 flex flex-wrap justify-center mt-6 items-stretch content-center mb-6">
+      <div className="border-0 border-primary w-full max-w-lg px-2 pt-9 sm:px-0">
+        <h1 className="text-2xl text-secondary font-normal text-center lg:text-5xl mb-4">
+          {product.name}
+        </h1>
         <Tab.Group>
           <Tab.Panels>
             {images.map(({ asset: { url, id } }, idx) => {
@@ -66,18 +69,18 @@ export default function Products() {
           </Tab.List>
         </Tab.Group>
       </div>
+
       <div className="w-6"></div>
-      <div className="max-w-md flex content-between flex-wrap">
-        <h1 className="text-2xl lg:text-5xl text-base-content mb-4">
-          {product.name}
-        </h1>
-        <p className="w-full mb-4 text-2xl font-light text-primary">
+      <div className="max-w-md flex content-between pt-12 flex-wrap">
+        <p className="w-min mb-4 lg:ml-auto lg:mr-9 text-3xl lg:text-5xl font-light text-primary">
           {product.price.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
           })}
         </p>
-        <p className="border-0 border-primary">{product.description}</p>
+        <p className="border-0 border-primary text-sm lg:text-base">
+          {product.description}
+        </p>
         {/*  */}
         <button className="btn btn-block btn-secondary mt-9">
           Add To Cart
