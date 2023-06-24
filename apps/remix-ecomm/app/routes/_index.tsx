@@ -78,9 +78,13 @@ export default function Index() {
                     className="w-full h-full object-center object-contain"
                   />
                 </div>
-                <h3 className="mt-4 text-sm">{product.name}</h3>
-                <p className="mt-1 text-sm font-medium text-base-content opacity-50">
-                  $ {product.price}
+                <h3 className="mt-4 text-sm text-center">{product.name}</h3>
+                <p className="mt-1 text-sm font-medium text-base-content opacity-50 text-center">
+                  {/* $ {product.price} */}
+                  {product.price.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
                 </p>
               </Link>
             ))}

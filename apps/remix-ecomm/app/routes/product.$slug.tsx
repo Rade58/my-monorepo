@@ -25,60 +25,10 @@ export default function Products() {
   const { product } = useLoaderData<typeof loader>();
   const images = product.images;
 
-  console.log({ images, product });
-  let [categories] = useState({
-    Recent: [
-      {
-        id: 1,
-        title: "Does drinking coffee make you smarter?",
-        date: "5h ago",
-        commentCount: 5,
-        shareCount: 2,
-      },
-      {
-        id: 2,
-        title: "So you've bought coffee... now what?",
-        date: "2h ago",
-        commentCount: 3,
-        shareCount: 2,
-      },
-    ],
-    Popular: [
-      {
-        id: 1,
-        title: "Is tech making coffee better or worse?",
-        date: "Jan 7",
-        commentCount: 29,
-        shareCount: 16,
-      },
-      {
-        id: 2,
-        title: "The most innovative things happening in coffee",
-        date: "Mar 19",
-        commentCount: 24,
-        shareCount: 12,
-      },
-    ],
-    Trending: [
-      {
-        id: 1,
-        title: "Ask Me Anything: 10 answers to your questions about coffee",
-        date: "2d ago",
-        commentCount: 9,
-        shareCount: 5,
-      },
-      {
-        id: 2,
-        title: "The worst advice we've ever heard about coffee",
-        date: "4d ago",
-        commentCount: 1,
-        shareCount: 2,
-      },
-    ],
-  });
+  // console.log({ images, product });
 
   return (
-    <section className="border border-primary mx-auto lg:mx-14 flex flex-wrap-reverse justify-center mt-6 items-center content-center">
+    <section className="border-0 border-primary mx-auto lg:mx-14 flex flex-wrap-reverse justify-center mt-6 items-center content-center">
       <div className="w-full max-w-lg px-2 py-16 sm:px-0">
         <Tab.Group>
           <Tab.Panels>
@@ -121,6 +71,12 @@ export default function Products() {
         <h1 className="text-2xl lg:text-5xl text-base-content mb-4">
           {product.name}
         </h1>
+        <p className="w-full mb-4 text-2xl font-light text-primary">
+          {product.price.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}
+        </p>
         <p className="border-0 border-primary">{product.description}</p>
         {/*  */}
       </div>
