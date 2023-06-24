@@ -118,7 +118,7 @@ export default function Products() {
       </div>
       <div className="w-6"></div>
       <div className="max-w-md flex content-between flex-wrap">
-        <h1 className="text-2xl lg:text-6xl text-base-content">
+        <h1 className="text-2xl lg:text-5xl text-base-content mb-4">
           {product.name}
         </h1>
         <p className="border-0 border-primary">{product.description}</p>
