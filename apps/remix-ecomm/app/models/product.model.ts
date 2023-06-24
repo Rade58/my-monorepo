@@ -12,7 +12,7 @@ interface Product {
   price: number;
   description: string;
   slug: { current: string };
-  image: string;
+  images: { asset: { url: string } }[];
 }
 
 export async function getAllProducts() {
