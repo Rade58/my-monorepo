@@ -78,7 +78,7 @@ export default function Products() {
   });
 
   return (
-    <section className="border-0 border-primary mx-6 lg:mx-14 flex flex-wrap justify-between">
+    <section className="border-0 border-primary mx-6 lg:mx-14 flex flex-wrap-reverse justify-between mt-6">
       <div className="w-full max-w-lg px-2 py-16 sm:px-0">
         <Tab.Group>
           <Tab.Panels>
@@ -116,7 +116,13 @@ export default function Products() {
           </Tab.List>
         </Tab.Group>
       </div>
-      <div>{/*  */}</div>
+      <div className="max-w-md">
+        <h1 className="text-2xl lg:text-6xl text-base-content">
+          {product.name}
+        </h1>
+        <p className="border-0 border-primary">{product.description}</p>
+        {/*  */}
+      </div>
 
       {/* {JSON.stringify({ product }, null, 2)} */}
     </section>
