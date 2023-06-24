@@ -78,7 +78,7 @@ export default function Products() {
   });
 
   return (
-    <section className="border-0 border-primary mx-6 lg:mx-14 flex flex-wrap-reverse justify-between mt-6">
+    <section className="border border-primary mx-auto lg:mx-14 flex flex-wrap-reverse justify-center mt-6 items-center content-center">
       <div className="w-full max-w-lg px-2 py-16 sm:px-0">
         <Tab.Group>
           <Tab.Panels>
@@ -116,7 +116,8 @@ export default function Products() {
           </Tab.List>
         </Tab.Group>
       </div>
-      <div className="max-w-md">
+      <div className="w-6"></div>
+      <div className="max-w-md flex content-between flex-wrap">
         <h1 className="text-2xl lg:text-6xl text-base-content">
           {product.name}
         </h1>
