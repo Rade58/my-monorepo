@@ -12,7 +12,7 @@ interface Product {
   price: number;
   description: string;
   slug: { current: string };
-  images: { asset: { url: string } }[];
+  images: { asset: { url: string; id: string } }[];
 }
 
 export async function getAllProducts() {
@@ -46,7 +46,7 @@ export async function getAllProducts() {
 export async function getSingleBySlug(slug: string) {
   //
   try {
-    const product: Product | undefined = await client.fetch(
+    const products: Product[] | undefined = await client.fetch(
       /* groq */ `
       *[_type == "recomm_product" && $slug == slug.current]{
         name,
@@ -56,6 +56,7 @@ export async function getSingleBySlug(slug: string) {
         stripeProductId,
         images[]{
           asset -> {
+            "id": _id,
             url
           }
         }
@@ -66,11 +67,14 @@ export async function getSingleBySlug(slug: string) {
       }
     );
 
-    if (!product) {
+    if (!products) {
+      return undefined;
+    }
+    if (products.length === 0) {
       return undefined;
     }
 
-    return product;
+    return products[0];
   } catch (err) {
     console.error(err);
     return undefined;

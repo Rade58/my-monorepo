@@ -3,6 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import { Tab } from "@headlessui/react";
 import { getSingleBySlug } from "~/models/product.model";
 import { useState } from "react";
+import Image from "remix-image";
 
 export async function loader(loaderArgs: LoaderArgs) {
   const product = await getSingleBySlug(loaderArgs.params.slug || "");
@@ -22,7 +23,9 @@ function classNames(...classes: string[]) {
 
 export default function Products() {
   const { product } = useLoaderData<typeof loader>();
+  const images = product.images;
 
+  console.log({ images, product });
   let [categories] = useState({
     Recent: [
       {
@@ -75,8 +78,46 @@ export default function Products() {
   });
 
   return (
-    <pre>
+    <>
       <div className="w-full max-w-md px-2 py-16 sm:px-0">
+        <Tab.Group>
+          <Tab.Panels>
+            {images.map(({ asset: { url, id } }, idx) => {
+              return (
+                <Tab.Panel
+                  key={idx}
+                  className={classNames(
+                    "rounded-xl bg-white p-3",
+                    "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
+                  )}
+                >
+                  <Image src={url} alt={`${product.name} image`} />
+                </Tab.Panel>
+              );
+            })}
+          </Tab.Panels>
+          <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+            {images.map(({ asset: { url, id } }, idx) => {
+              return (
+                <Tab
+                  key={idx}
+                  className={({ selected }) =>
+                    classNames(
+                      "w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700",
+                      "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                      selected
+                        ? "bg-white shadow"
+                        : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                    )
+                  }
+                >
+                  <Image src={url} alt={`${product.name} image`} />
+                </Tab>
+              );
+            })}
+          </Tab.List>
+        </Tab.Group>
+        {/* 
         <Tab.Group>
           <Tab.Panels className="mt-2">
             {Object.values(categories).map((posts, idx) => (
@@ -136,10 +177,11 @@ export default function Products() {
               </Tab>
             ))}
           </Tab.List>
-        </Tab.Group>
+        </Tab.Group> 
+        */}
       </div>
 
-      {JSON.stringify({ product }, null, 2)}
-    </pre>
+      {/* {JSON.stringify({ product }, null, 2)} */}
+    </>
   );
 }
