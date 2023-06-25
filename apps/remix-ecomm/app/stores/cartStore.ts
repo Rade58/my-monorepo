@@ -33,6 +33,31 @@ interface Actions {
 
 export const useCart = create<State & Actions>((set, get) => ({
   addToCart(product) {
+    // check if there is possible item
+    const cart = get().cart;
+
+    const possibleProduct = cart.find((item) => {
+      return item.id === product.id;
+    });
+
+    if (possibleProduct) {
+      set((state) => {
+        const index = state.cart.indexOf(possibleProduct);
+
+        const cart = [...state.cart];
+
+        cart[index].quantity = state.cart[index].quantity + 1;
+
+        return {
+          cart,
+          totalItems: state.totalItems + 1,
+          totalPrice: state.totalPrice + product.price,
+        };
+      });
+
+      return;
+    }
+
     set((state) => {
       return {
         cart: [...state.cart, product],
@@ -44,13 +69,25 @@ export const useCart = create<State & Actions>((set, get) => ({
   removeFromCart(productId) {
     set((state) => {
       let price: number = 0;
+      let found = false;
 
       const products = state.cart.filter((prod) => {
         if (prod.id !== productId) {
           return true;
         }
 
-        price = prod.price;
+        if (prod.quantity > 1) {
+          price = prod.price;
+          found = true;
+          prod.quantity = 1;
+          return true;
+        }
+
+        if (prod.quantity <= 1) {
+          price = prod.price;
+          found = true;
+          return false;
+        }
 
         return false;
       });
@@ -58,7 +95,7 @@ export const useCart = create<State & Actions>((set, get) => ({
       return {
         cart: products,
         totalPrice: state.totalPrice - price,
-        totalItems: state.totalItems - 1,
+        totalItems: found ? state.totalItems - 1 : state.totalItems,
       };
     });
   },
