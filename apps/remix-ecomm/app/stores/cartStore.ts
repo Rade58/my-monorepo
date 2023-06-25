@@ -79,7 +79,7 @@ export const useCart = create<State & Actions>((set, get) => ({
         if (prod.quantity > 1) {
           price = prod.price;
           found = true;
-          prod.quantity = 1;
+          prod.quantity = prod.quantity - 1;
           return true;
         }
 
