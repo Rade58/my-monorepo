@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 interface CartProduct {
+  id: string;
   name: string;
   price: number;
   stripeProductId: string;
@@ -24,7 +25,10 @@ interface State {
   showCart: boolean;
 }
 
-interface Actions {}
+interface Actions {
+  addToCart: (product: CartProduct) => void;
+  removeFromCart: (productId: string) => void;
+}
 
 export const useCart = create<State>((set) => ({
   cart: [],

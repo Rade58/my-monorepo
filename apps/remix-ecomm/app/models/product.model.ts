@@ -8,6 +8,7 @@ type Products = {
 }[];
 
 interface Product {
+  id: string;
   name: string;
   price: number;
   description: string;
@@ -49,6 +50,7 @@ export async function getSingleBySlug(slug: string) {
     const products: Product[] | undefined = await client.fetch(
       /* groq */ `
       *[_type == "recomm_product" && $slug == slug.current]{
+        "id": _id,
         name,
         price,
         slug,
