@@ -4,6 +4,7 @@ import { Tab } from "@headlessui/react";
 import { getSingleBySlug } from "~/models/product.model";
 import { useState } from "react";
 import Image from "remix-image";
+import { useCart } from "~/stores/cartStore";
 
 export async function loader(loaderArgs: LoaderArgs) {
   const product = await getSingleBySlug(loaderArgs.params.slug || "");
@@ -24,7 +25,7 @@ function classNames(...classes: string[]) {
 export default function Products() {
   const { product } = useLoaderData<typeof loader>();
   const images = product.images;
-
+  const { addToCart } = useCart();
   // console.log({ images, product });
 
   return (
@@ -82,7 +83,17 @@ export default function Products() {
           {product.description}
         </p>
         {/*  */}
-        <button className="btn btn-block btn-secondary mt-9">
+        <button
+          onClick={() => {
+            addToCart({
+              ...product,
+              quantity: 1,
+              image: images[0],
+              stripeProductId: "",
+            });
+          }}
+          className="btn btn-block btn-secondary mt-9"
+        >
           Add To Cart
         </button>
       </div>

@@ -12,6 +12,7 @@ import stylesheet from "~/tailwind.css";
 import themes from "../themes/list";
 import NavBar from "./components/Navbar";
 import type { ReactNode } from "react";
+import CartModal from "./components/CartModal";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -25,6 +26,7 @@ function RootLayout({ children }: { children: ReactNode }) {
     <>
       <NavBar />
       <main>{children}</main>
+      <CartModal />
     </>
   );
 }

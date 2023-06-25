@@ -106,7 +106,13 @@ export default function NavBar() {
               <span className="font-bold text-lg">8 Items</span>
               <span className="text-info">Subtotal: $999</span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
+                {/* @ts-expect-error */}
+                <button
+                  onClick={() => window.my_modal_1.showModal()}
+                  className="btn btn-primary btn-block"
+                >
+                  View cart
+                </button>
               </div>
             </div>
           </div>
