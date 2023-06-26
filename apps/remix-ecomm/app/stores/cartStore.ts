@@ -29,6 +29,7 @@ interface Actions {
   addToCart: (product: CartProduct) => void;
   removeFromCart: (productId: string) => void;
   toggleShowCart: () => void;
+  setCartFromStorage: () => void;
 }
 
 export const useCart = create<State & Actions>((set, get) => ({
@@ -120,6 +121,29 @@ export const useCart = create<State & Actions>((set, get) => ({
   toggleShowCart() {
     set((state) => {
       return { showCart: !state.showCart };
+    });
+  },
+  setCartFromStorage() {
+    const cartString = localStorage.getItem("cart");
+    const totalPriceString = localStorage.getItem("totalPrice");
+    const totalItemsString = localStorage.getItem("totalItems");
+
+    let cart: State["cart"] = [];
+    let totalPrice: State["totalPrice"] = 0;
+    let totalItems: State["totalItems"] = 0;
+
+    if (cartString && totalItemsString && totalPriceString) {
+      cart = JSON.parse(cartString);
+      totalPrice = parseFloat(totalPriceString);
+      totalItems = parseInt(totalItemsString);
+    }
+
+    set((_) => {
+      return {
+        cart,
+        totalPrice,
+        totalItems,
+      };
     });
   },
   cart: [],
