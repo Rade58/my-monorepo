@@ -36,7 +36,14 @@ const products = [
 export default function CartModal() {
   // const [open, setOpen] = useState(true);
 
-  const { cart, totalPrice, totalItems, showCart, toggleShowCart } = useCart();
+  const {
+    cart,
+    totalPrice,
+    totalItems,
+    showCart,
+    toggleShowCart,
+    removeFromCart,
+  } = useCart();
   console.log({ cart, totalPrice, totalItems });
 
   return (
@@ -124,6 +131,9 @@ export default function CartModal() {
 
                                     <div className="flex">
                                       <button
+                                        onClick={() => {
+                                          removeFromCart(product.id);
+                                        }}
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >
