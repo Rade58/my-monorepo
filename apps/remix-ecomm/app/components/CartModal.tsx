@@ -110,6 +110,9 @@ export default function CartModal() {
                                       <button
                                         onClick={() => {
                                           removeFromCart(product.id);
+                                          if (totalItems <= 1) {
+                                            toggleShowCart();
+                                          }
                                         }}
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"

@@ -52,6 +52,16 @@ export default function AddOrRemoveFromCart(props: Props) {
 
   return (
     <div className="border-0 border-primary w-full">
+      {oneOrMore && (
+        <button
+          onClick={() => {
+            removeFromCart(props.product.id);
+          }}
+          className="btn btn-block btn-error mt-auto"
+        >
+          Remove{moreThanOne ? " One" : ""}
+        </button>
+      )}
       <button
         onClick={() => {
           addToCart({
@@ -61,20 +71,10 @@ export default function AddOrRemoveFromCart(props: Props) {
             stripeProductId: props.stripeProductId,
           });
         }}
-        className="btn btn-block btn-secondary mt-auto"
+        className="btn btn-block btn-secondary mt-2"
       >
         Add {oneOrMore ? "Another One" : "To Cart"}
       </button>
-      {oneOrMore && (
-        <button
-          onClick={() => {
-            removeFromCart(props.product.id);
-          }}
-          className="btn btn-block btn-error mt-2"
-        >
-          Remove{moreThanOne ? " One" : ""}
-        </button>
-      )}
     </div>
   );
 }
