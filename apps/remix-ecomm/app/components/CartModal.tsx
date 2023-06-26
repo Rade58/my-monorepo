@@ -33,14 +33,14 @@ const products = [
 ];
 
 export default function CartModal() {
-  const [open, setOpen] = useState(true);
+  // const [open, setOpen] = useState(true);
 
-  const { cart, totalPrice, totalItems } = useCart();
+  const { cart, totalPrice, totalItems, showCart, toggleShowCart } = useCart();
   console.log({ cart, totalPrice, totalItems });
 
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+    <Transition.Root show={showCart} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={toggleShowCart}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -76,7 +76,7 @@ export default function CartModal() {
                           <button
                             type="button"
                             className="-m-2 p-2 text-gray-400 hover:text-gray-500"
-                            onClick={() => setOpen(false)}
+                            onClick={() => toggleShowCart()}
                           >
                             <span className="sr-only">Close panel</span>
                             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
@@ -158,7 +158,7 @@ export default function CartModal() {
                           <button
                             type="button"
                             className="font-medium text-indigo-600 hover:text-indigo-500"
-                            onClick={() => setOpen(false)}
+                            onClick={() => toggleShowCart()}
                           >
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>

@@ -1,7 +1,10 @@
 import { Link } from "@remix-run/react";
 import Logo from "./Logo";
+import { useCart } from "~/stores/cartStore";
 
 export default function NavBar() {
+  const { toggleShowCart } = useCart();
+
   return (
     <header className="navbar bg-base-100">
       <div className="navbar-start">
@@ -106,9 +109,10 @@ export default function NavBar() {
               <span className="font-bold text-lg">8 Items</span>
               <span className="text-info">Subtotal: $999</span>
               <div className="card-actions">
-                {/* @ts-expect-error */}
+                {/* ------@ts-expect-error */}
                 <button
-                  onClick={() => window.my_modal_1.showModal()}
+                  // onClick={() => window.my_modal_1.showModal()}
+                  onClick={toggleShowCart}
                   className="btn btn-primary btn-block"
                 >
                   View cart
