@@ -2,7 +2,6 @@ import { json, type LoaderArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { Tab } from "@headlessui/react";
 import { getSingleBySlug } from "~/models/product.model";
-import { useState } from "react";
 import Image from "remix-image";
 import { useCart } from "~/stores/cartStore";
 
@@ -26,7 +25,6 @@ export default function Products() {
   const { product } = useLoaderData<typeof loader>();
   const images = product.images;
   const { addToCart } = useCart();
-  // console.log({ images, product });
 
   return (
     <section className="border-0 border-primary mx-4 flex flex-wrap justify-center mt-6 items-stretch content-center mb-6">
