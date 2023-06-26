@@ -21,7 +21,9 @@ export default function CartMenu() {
               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
             />
           </svg>
-          <span className="badge badge-sm indicator-item">{totalItems}</span>
+          {totalItems > 0 && (
+            <span className="badge badge-sm indicator-item">{totalItems}</span>
+          )}
         </div>
       </label>
       <div
@@ -29,7 +31,9 @@ export default function CartMenu() {
         className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
       >
         <div className="card-body">
-          <span className="font-bold text-lg">{totalItems} Items</span>
+          <span className="font-bold text-lg">
+            {totalItems > 0 ? <>{totalItems}</> : <>No</>} Items
+          </span>
           <span className="text-info">
             Subtotal:{" "}
             {totalPrice.toLocaleString("en-US", {
@@ -37,16 +41,16 @@ export default function CartMenu() {
               currency: "USD",
             })}
           </span>
-          <div className="card-actions">
-            {/* ------@ts-expect-error */}
-            <button
-              // onClick={() => window.my_modal_1.showModal()}
-              onClick={toggleShowCart}
-              className="btn btn-primary btn-block"
-            >
-              View cart
-            </button>
-          </div>
+          {totalItems > 0 && (
+            <div className="card-actions">
+              <button
+                onClick={toggleShowCart}
+                className="btn btn-primary btn-block"
+              >
+                View cart
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
