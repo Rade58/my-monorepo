@@ -48,6 +48,13 @@ export const useCart = create<State & Actions>((set, get) => ({
 
         cart[index].quantity = state.cart[index].quantity + 1;
 
+        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("totalItems", `${state.totalItems + 1}`);
+        localStorage.setItem(
+          "totalPrice",
+          `${state.totalPrice + product.price}`
+        );
+
         return {
           cart,
           totalItems: state.totalItems + 1,
@@ -59,6 +66,10 @@ export const useCart = create<State & Actions>((set, get) => ({
     }
 
     set((state) => {
+      localStorage.setItem("cart", JSON.stringify([...state.cart, product]));
+      localStorage.setItem("totalItems", `${state.totalItems + 1}`);
+      localStorage.setItem("totalPrice", `${state.totalPrice + product.price}`);
+
       return {
         cart: [...state.cart, product],
         totalItems: state.totalItems + 1,
@@ -91,6 +102,13 @@ export const useCart = create<State & Actions>((set, get) => ({
 
         return false;
       });
+
+      localStorage.setItem("cart", JSON.stringify(products));
+      localStorage.setItem("totalItems", `${state.totalPrice - price}`);
+      localStorage.setItem(
+        "totalPrice",
+        `${found ? state.totalItems - 1 : state.totalItems}`
+      );
 
       return {
         cart: products,

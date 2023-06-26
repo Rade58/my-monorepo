@@ -5,7 +5,7 @@ import type { LoaderArgs } from "@remix-run/node";
 import { getAllProducts } from "~/models/product.model";
 
 import { blured_hero } from "~/lib/util/blured_hero";
-import { blured_product } from "~/lib/util/blured_product";
+// import { blured_product } from "~/lib/util/blured_product";
 
 export const meta: V2_MetaFunction = () => {
   return [

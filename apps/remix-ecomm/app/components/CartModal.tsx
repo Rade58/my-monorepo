@@ -137,7 +137,9 @@ export default function CartModal() {
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >
-                                        Remove
+                                        {product.quantity > 1
+                                          ? "Remove one"
+                                          : "Remove"}
                                       </button>
                                     </div>
                                   </div>
