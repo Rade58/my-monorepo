@@ -3,12 +3,10 @@ import { useLoaderData } from "@remix-run/react";
 import { Tab } from "@headlessui/react";
 import { getSingleBySlug } from "~/models/product.model";
 import Image from "remix-image";
-import { useCart } from "~/stores/cartStore";
+import AddToCart from "~/components/AddToCart";
 
 export async function loader(loaderArgs: LoaderArgs) {
   const product = await getSingleBySlug(loaderArgs.params.slug || "");
-
-  // console.log(JSON.stringify({ product }, null, 2));
 
   if (!product) {
     throw new Response("not found", { status: 404 });
@@ -24,7 +22,6 @@ function classNames(...classes: string[]) {
 export default function Products() {
   const { product } = useLoaderData<typeof loader>();
   const images = product.images;
-  const { addToCart } = useCart();
 
   return (
     <section className="border-0 border-primary mx-4 flex flex-wrap justify-center mt-6 items-stretch content-center mb-6">
@@ -80,23 +77,9 @@ export default function Products() {
         <p className="border-0 border-primary text-sm lg:text-base">
           {product.description}
         </p>
-        {/*  */}
-        <button
-          onClick={() => {
-            addToCart({
-              ...product,
-              quantity: 1,
-              image: images[0],
-              stripeProductId: "",
-            });
-          }}
-          className="btn btn-block btn-secondary mt-9"
-        >
-          Add To Cart
-        </button>
-      </div>
 
-      {/* {JSON.stringify({ product }, null, 2)} */}
+        <AddToCart product={product} image={images[0]} stripeProductId="" />
+      </div>
     </section>
   );
 }
