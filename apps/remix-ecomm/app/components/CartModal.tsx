@@ -1,37 +1,9 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { useCart } from "~/stores/cartStore";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "@remix-run/react";
-
-const products = [
-  {
-    id: 1,
-    name: "Throwback Hip Bag",
-    href: "#",
-    color: "Salmon",
-    price: "$90.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-    imageAlt:
-      "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-  },
-  {
-    id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "$32.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
-  // More products...
-];
 
 export default function CartModal() {
   // const [open, setOpen] = useState(true);
@@ -43,8 +15,13 @@ export default function CartModal() {
     showCart,
     toggleShowCart,
     removeFromCart,
+    setCartFromStorage,
   } = useCart();
   console.log({ cart, totalPrice, totalItems });
+
+  useEffect(() => {
+    setCartFromStorage();
+  }, [setCartFromStorage]);
 
   return (
     <Transition.Root show={showCart} as={Fragment}>
