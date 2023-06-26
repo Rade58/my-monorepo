@@ -3,7 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import { Tab } from "@headlessui/react";
 import { getSingleBySlug } from "~/models/product.model";
 import Image from "remix-image";
-import AddToCart from "~/components/AddToCart";
+import AddOrRemoveFromCart from "~/components/AddOrRemoveFromCart";
 
 export async function loader(loaderArgs: LoaderArgs) {
   const product = await getSingleBySlug(loaderArgs.params.slug || "");
@@ -78,7 +78,11 @@ export default function Products() {
           {product.description}
         </p>
 
-        <AddToCart product={product} image={images[0]} stripeProductId="" />
+        <AddOrRemoveFromCart
+          product={product}
+          image={images[0]}
+          stripeProductId=""
+        />
       </div>
     </section>
   );

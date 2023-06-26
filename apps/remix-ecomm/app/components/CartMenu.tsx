@@ -32,7 +32,8 @@ export default function CartMenu() {
       >
         <div className="card-body">
           <span className="font-bold text-lg">
-            {totalItems > 0 ? <>{totalItems}</> : <>No</>} Items
+            {totalItems > 0 ? totalItems : "No"} Item
+            {totalItems === 1 ? "" : "s"}
           </span>
           <span className="text-info">
             Subtotal:{" "}
