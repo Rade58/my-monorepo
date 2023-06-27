@@ -3,11 +3,15 @@ import { useCart } from "~/stores/cartStore";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Link, useNavigation, useSubmit } from "@remix-run/react";
+import { Link, useNavigation, useMatches } from "@remix-run/react";
 
 export default function CartModal() {
-  const submit = useSubmit();
+  // const submit = useSubmit();
   const { state } = useNavigation();
+
+  // const match = useMatch();
+  const [_, { pathname }] = useMatches();
+
   // const inputRef = useRef();
   const {
     cart,
@@ -21,11 +25,23 @@ export default function CartModal() {
   } = useCart();
   // console.log({ cart, totalPrice, totalItems });
 
-  const [submiting, setSubmitStatus] = useState<boolean>(false);
+  // const [submiting, setSubmitStatus] = useState<boolean>(false);
+
+  const [setted, setSetted] = useState<boolean>(false);
 
   useEffect(() => {
-    setCartFromStorage();
-  }, [setCartFromStorage]);
+    if (setted === false) {
+      if (pathname === "/payment/success") {
+        console.log("cart success clear");
+        clearCartStorage();
+        setSetted(true);
+      } else {
+        console.log("cart init set");
+        setCartFromStorage();
+        setSetted(true);
+      }
+    }
+  }, [setCartFromStorage, clearCartStorage, pathname, setted, setSetted]);
 
   /*  useEffect(() => {
     //
