@@ -14,6 +14,7 @@ interface Product {
   description: string;
   slug: { current: string };
   images: { asset: { url: string; id: string } }[];
+  stripeProductId: string;
 }
 
 export async function getAllProducts() {

@@ -81,7 +81,7 @@ export default function Products() {
         <AddOrRemoveFromCart
           product={product}
           image={images[0]}
-          stripeProductId=""
+          stripeProductId={product.stripeProductId}
         />
       </div>
     </section>

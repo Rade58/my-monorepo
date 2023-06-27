@@ -20,10 +20,12 @@ export async function action({ request }: ActionArgs) {
 
   const url = getUrl(request);
 
-  const stripeSessionUrl = await getStripeSession(cart, url);
+  /* console.log({ cart });
+  console.log({ url });
 
-  // console.log("FROM BUY HANDLER!");
-  // console.log({ cart });
+  return json({ cart }); */
+
+  const stripeSessionUrl = await getStripeSession(cart, url);
 
   return new Response(null, {
     headers: {
