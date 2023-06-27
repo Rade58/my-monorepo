@@ -14,6 +14,7 @@ interface Actions {
   removeFromCart: (productId: string) => void;
   toggleShowCart: () => void;
   setCartFromStorage: () => void;
+  clearCartStorage: () => void;
 }
 
 export const useCart = create<State & Actions>((set, get) => ({
@@ -129,6 +130,19 @@ export const useCart = create<State & Actions>((set, get) => ({
         totalItems,
       };
     });
+  },
+  clearCartStorage() {
+    localStorage.removeItem("cart");
+    localStorage.removeItem("totalItems");
+    localStorage.removeItem("totalPrice");
+
+    /* set((_) => {
+      return {
+        cart: [],
+        totalPrice: 0,
+        totalItems: 0,
+      };
+    }); */
   },
   cart: [],
   showCart: false,

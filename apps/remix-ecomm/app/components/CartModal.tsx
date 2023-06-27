@@ -1,13 +1,14 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useCart } from "~/stores/cartStore";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "@remix-run/react";
+import { Link, useNavigation, useSubmit } from "@remix-run/react";
 
 export default function CartModal() {
-  // const [open, setOpen] = useState(true);
-
+  const submit = useSubmit();
+  const { state } = useNavigation();
+  // const inputRef = useRef();
   const {
     cart,
     totalPrice,
@@ -16,12 +17,32 @@ export default function CartModal() {
     toggleShowCart,
     removeFromCart,
     setCartFromStorage,
+    clearCartStorage,
   } = useCart();
   console.log({ cart, totalPrice, totalItems });
+
+  const [submiting, setSubmitStatus] = useState<boolean>(false);
 
   useEffect(() => {
     setCartFromStorage();
   }, [setCartFromStorage]);
+
+  useEffect(() => {
+    //
+    //
+    if (submiting) {
+      const formData = new FormData();
+
+      formData.append("cart", JSON.stringify(cart));
+
+      clearCartStorage();
+      submit(formData, {
+        action: "/buy",
+        method: "POST",
+        encType: "multipart/form-data",
+      });
+    }
+  }, [submiting, clearCartStorage, cart, submit]);
 
   return (
     <Transition.Root show={showCart} as={Fragment}>
@@ -144,14 +165,23 @@ export default function CartModal() {
                       <p className="mt-0.5 text-sm text-gray-500">
                         Shipping and taxes calculated at checkout.
                       </p>
-                      <div className="mt-6">
-                        <a
-                          href="#"
+                      <form className="mt-6" /* action="/buy" method="POST" */>
+                        <button
+                          onClick={() => {
+                            setSubmitStatus(true);
+                          }}
+                          // type="submit"
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                          disabled={state !== "idle"}
                         >
                           Checkout
-                        </a>
-                      </div>
+                        </button>
+                        <input
+                          type="hidden"
+                          name="cart"
+                          // value={JSON.stringify(cart)}
+                        />
+                      </form>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
                           or

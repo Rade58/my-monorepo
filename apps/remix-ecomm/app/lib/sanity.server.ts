@@ -1,3 +1,5 @@
+// It is named .server because I don't want this code to be
+// included in frontend
 // sanity.js
 import { createClient } from "@sanity/client";
 // Import using ESM URL imports in environments that supports it:

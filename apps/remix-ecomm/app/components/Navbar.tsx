@@ -6,7 +6,7 @@ export default function NavBar() {
   return (
     <header className="navbar bg-base-100">
       <div className="navbar-start">
-        <div className="dropdown">
+        {/* <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ export default function NavBar() {
               <a>Item 3</a>
             </li>
           </ul>
-        </div>
+        </div> */}
         <Link to="/" className="normal-case text-xl">
           <div className="w-16 border-0 border-primary hover:scale-110">
             <Logo />
@@ -53,7 +53,7 @@ export default function NavBar() {
           {/* daisyUI */}
         </Link>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      {/*  <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link to="temp">Temp</Link>
@@ -75,7 +75,7 @@ export default function NavBar() {
             <a>Item 3</a>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div className="navbar-end flex-none">
         <CartMenu />
       </div>
