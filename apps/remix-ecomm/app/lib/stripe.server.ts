@@ -28,12 +28,40 @@ export async function getStripeSession(
     typescript: true,
   });
 
+  const line_items = products.map((prod) => {
+    return {
+      // adjustable_quantity,
+      //  dynamic_tax_rates,
+      // tax_rates,
+      // price_data,
+      price_data: {
+        // product,
+        currency: "USD",
+        // recurring,
+        // tax_behavior,
+        // unit_amount_decimal,
+        unit_amount: prod.quantity,
+        product_data: {
+          name: prod.name,
+          description: prod.description,
+          images: [prod.image],
+          // metadata,
+          // tax_code,
+        },
+      },
+      //
+      price: prod.stripeProductId,
+      quantity: prod.quantity,
+    };
+  });
+
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     payment_method_types: ["card"],
-    line_items: [],
-    success_url: "",
-    cancel_url: "",
+    // line_items: [],
+    line_items,
+    success_url: `${domainUrl}/payment/success`,
+    cancel_url: `${domainUrl}/payment/cancelled`,
   });
 
   return "";
