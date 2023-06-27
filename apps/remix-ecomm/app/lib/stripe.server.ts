@@ -56,6 +56,9 @@ export async function getStripeSession(
       price: prod.stripeProductId,
       quantity: prod.quantity,
       adjustable_quantity: {
+        // ADDED THIS BECAUSE I WANT FOR USER
+        // TO BE ABLE TO CHANGE QUANTOTY AT
+        // STRIPES CHECKOUT PAGE
         enabled: true,
         maximum: 16,
         minimum: 1,
@@ -72,5 +75,6 @@ export async function getStripeSession(
     cancel_url: `${domainUrl}/payment/cancelled`,
   });
 
-  return session.url ?? "";
+  // this url will be success url or cancel url we setted up
+  return session.url ?? "/";
 }
