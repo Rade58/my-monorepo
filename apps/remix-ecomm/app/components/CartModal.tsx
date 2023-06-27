@@ -114,7 +114,7 @@ export default function CartModal() {
                           >
                             {cart.map((product) => (
                               <li key={product.id} className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-primary">
                                   <img
                                     src={product.image.asset.url}
                                     alt={product.name}
@@ -124,7 +124,7 @@ export default function CartModal() {
 
                                 <div className="ml-4 flex flex-1 flex-col">
                                   <div>
-                                    <div className="flex justify-between text-base font-medium text-secondary">
+                                    <div className="flex justify-between text-base font-medium">
                                       <h3>
                                         <Link
                                           to={`/product/${product.slug.current}`}

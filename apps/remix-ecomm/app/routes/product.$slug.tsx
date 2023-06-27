@@ -26,7 +26,7 @@ export default function Products() {
   return (
     <section className="border-0 border-primary mx-4 flex flex-wrap justify-center mt-6 items-stretch content-center mb-6">
       <div className="border-0 border-primary w-full max-w-lg px-2 pt-9 sm:px-0">
-        <h1 className="text-2xl text-secondary font-normal text-center lg:text-5xl mb-4">
+        <h1 className="text-2xl font-normal text-center lg:text-5xl mb-4">
           {product.name}
         </h1>
         <Tab.Group>
