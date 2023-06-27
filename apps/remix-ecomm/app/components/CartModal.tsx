@@ -97,7 +97,7 @@ export default function CartModal() {
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                            className="-m-2 p-2 text-info hover:text-info-content"
                             onClick={() => toggleShowCart()}
                           >
                             <span className="sr-only">Close panel</span>
