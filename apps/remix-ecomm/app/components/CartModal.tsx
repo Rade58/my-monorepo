@@ -19,7 +19,7 @@ export default function CartModal() {
     setCartFromStorage,
     clearCartStorage,
   } = useCart();
-  console.log({ cart, totalPrice, totalItems });
+  // console.log({ cart, totalPrice, totalItems });
 
   const [submiting, setSubmitStatus] = useState<boolean>(false);
 
