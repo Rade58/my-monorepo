@@ -3,7 +3,7 @@
 
 import Stripe from "stripe";
 
-import { CartProduct } from "~/types";
+import { type CartProduct } from "~/types";
 
 export function getUrl(req: Request) {
   const host = req.headers.get("X-Forward-Host") ?? req.headers.get("host");
@@ -30,11 +30,14 @@ export async function getStripeSession(
 
   const line_items = products.map((prod) => {
     return {
-      // adjustable_quantity,
+      /* adjustable_quantity: {
+        enabled, 
+        maximum,
+        minimum
+      } */
       //  dynamic_tax_rates,
       // tax_rates,
-      // price_data,
-      price_data: {
+      /* price_data: {
         // product,
         currency: "USD",
         // recurring,
@@ -48,10 +51,15 @@ export async function getStripeSession(
           // metadata,
           // tax_code,
         },
-      },
+      }, */
       //
       price: prod.stripeProductId,
       quantity: prod.quantity,
+      adjustable_quantity: {
+        enabled: true,
+        maximum: 16,
+        minimum: 1,
+      },
     };
   });
 
@@ -64,5 +72,5 @@ export async function getStripeSession(
     cancel_url: `${domainUrl}/payment/cancelled`,
   });
 
-  return "";
+  return session.url ?? "";
 }
