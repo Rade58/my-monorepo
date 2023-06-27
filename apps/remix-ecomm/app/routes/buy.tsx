@@ -1,4 +1,4 @@
-import { json, type ActionArgs } from "@remix-run/node";
+import { json, type ActionArgs, redirect } from "@remix-run/node";
 import { getUrl, getStripeSession } from "~/lib/stripe.server";
 
 import { type CartProduct } from "~/types";
@@ -27,10 +27,14 @@ export async function action({ request }: ActionArgs) {
 
   const stripeSessionUrl = await getStripeSession(cart, url);
 
-  return new Response(null, {
+  /* return new Response(null, {
     headers: {
       Location: stripeSessionUrl,
     },
     status: 302,
-  });
+  }); */
+
+  console.log({ stripeSessionUrl });
+
+  return redirect(stripeSessionUrl);
 }

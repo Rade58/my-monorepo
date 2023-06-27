@@ -27,7 +27,7 @@ export default function CartModal() {
     setCartFromStorage();
   }, [setCartFromStorage]);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     //
     //
     if (submiting) {
@@ -43,7 +43,7 @@ export default function CartModal() {
       });
     }
   }, [submiting, clearCartStorage, cart, submit]);
-
+ */
   return (
     <Transition.Root show={showCart} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={toggleShowCart}>
@@ -165,11 +165,11 @@ export default function CartModal() {
                       <p className="mt-0.5 text-sm text-gray-500">
                         Shipping and taxes calculated at checkout.
                       </p>
-                      <form className="mt-6" /* action="/buy" method="POST" */>
+                      <form className="mt-6" action="/buy" method="POST">
                         <button
-                          onClick={() => {
-                            setSubmitStatus(true);
-                          }}
+                          // onClick={() => {
+                          //   setSubmitStatus(true);
+                          // }}
                           // type="submit"
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                           disabled={state !== "idle"}
@@ -179,7 +179,7 @@ export default function CartModal() {
                         <input
                           type="hidden"
                           name="cart"
-                          // value={JSON.stringify(cart)}
+                          value={JSON.stringify(cart)}
                         />
                       </form>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
