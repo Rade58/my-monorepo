@@ -1,8 +1,14 @@
 <script>
-	let a = 4;
+  let a = 4;
 
-	const c = 6;
+  console.log("");
+
+  let b = 56;
+
+  $: foo = "bar";
 </script>
 
 <h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<p>
+  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
+</p>
