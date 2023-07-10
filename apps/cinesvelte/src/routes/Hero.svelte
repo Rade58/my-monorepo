@@ -14,7 +14,7 @@
     }) || movie.images.logos[0];
 </script>
 
-<a href="/movie/{movie.id}" class="hero-img">
+<a href="/movie/{movie.id}" class="column hero-img">
   <img
     src={media(backdrop.file_path, 1280)}
     alt={movie.title}

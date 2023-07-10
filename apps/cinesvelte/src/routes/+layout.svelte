@@ -4,7 +4,7 @@
   import moviedb from "$lib/images/moviedb.svg";
 </script>
 
-<nav>
+<nav class="column">
   <a class="logo-a" href="/"><img src={logo} alt="cinesvelt" /></a>
   <div class="links">
     <a href="/search">Search</a>
