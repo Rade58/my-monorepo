@@ -3,7 +3,7 @@ import type { MovieDetails, MovieList } from '$lib/types';
 import * as api from '$lib/api';
 
 
-const BASE = "https://api.movies.tastejs.com"
+// const BASE = "https://api.movies.tastejs.com"
 
 
 export async function load({fetch} : LoadEvent){
@@ -14,7 +14,9 @@ export async function load({fetch} : LoadEvent){
 
   const featured = trending.results[0]
 
-  const featured_data = await api.get(fetch, '/movie/' + featured.id) as MovieDetails
+  const featured_data = await api.get(fetch, '/movie/' + featured.id, {
+    append_to_response: 'images'
+  }) as MovieDetails
 
   // const featured_data = await featured_response.json() as MovieDetails
 
