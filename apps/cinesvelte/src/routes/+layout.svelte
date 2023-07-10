@@ -55,7 +55,7 @@
 
   a.moviebd {
     margin: 0 2px;
-    height: 1.2rem;
+    height: 0.9rem;
     display: inline-block;
     /* border: crimson solid 1px; */
   }
