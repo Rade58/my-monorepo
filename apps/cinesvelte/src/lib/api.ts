@@ -1,5 +1,5 @@
 const BASE = "https://api.movies.tastejs.com"
-export const MEDIA_BASE = 'https://image.tbdb.org/t/p'
+export const MEDIA_BASE = 'https://image.tmdb.org/t/p'
 
 
 export async function get(fetch: typeof globalThis.fetch, endpoint: string, params?: Record<string, string>){
