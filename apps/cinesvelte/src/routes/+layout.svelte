@@ -1,10 +1,11 @@
 <script>
   import "../styles.css";
   import logo from "$lib/images/logo.svg";
+  import moviedb from "$lib/images/moviedb.svg";
 </script>
 
 <nav>
-  <a href="/"><img src={logo} alt="cinesvelt" /></a>
+  <a class="logo-a" href="/"><img src={logo} alt="cinesvelt" /></a>
   <div class="links">
     <a href="/search">Search</a>
     <a href="/watchlist">Watchlist</a>
@@ -17,7 +18,18 @@
 </main>
 
 <footer>
-  <p>Data provided by</p>
+  <p>
+    Data provided by
+
+    <a
+      class="moviebd"
+      href="https://www.themoviedb.org/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img src={moviedb} alt="moviedb" />
+    </a>
+  </p>
 </footer>
 
 <style>
@@ -34,9 +46,18 @@
 
   a {
     color: inherit;
+    text-decoration: none;
+  }
+  a.logo-a {
     display: inline-block;
     height: 2.4rem;
-    text-decoration: none;
+  }
+
+  a.moviebd {
+    margin: 0 2px;
+    height: 1.2rem;
+    display: inline-block;
+    /* border: crimson solid 1px; */
   }
 
   img {
