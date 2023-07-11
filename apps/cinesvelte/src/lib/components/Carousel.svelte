@@ -1,8 +1,14 @@
 <script lang="ts">
   import { media } from "$lib/api";
   import type { MovieList } from "$lib/types";
+  import type { View } from "$lib/views";
   export let movies: MovieList;
+  export let view: View;
 </script>
+
+<h2 class="carousel">
+  {view.title}
+</h2>
 
 <div class="carousel">
   {#each movies.results as movie}
