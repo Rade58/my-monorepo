@@ -13,7 +13,7 @@
 <Carousel
   movies={data.trending}
   view={views["trending"]}
-  href="/movie/trending"
+  href="/movies/trending"
 />
 <Carousel
   movies={data.now_playing}

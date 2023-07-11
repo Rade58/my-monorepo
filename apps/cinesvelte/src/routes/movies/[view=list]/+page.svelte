@@ -1,4 +1,7 @@
-<script>
+<script lang="ts">
+  export let data;
 </script>
 
-<h1>Hello World</h1>
+<div class="column">
+  <h1>{data.title}</h1>
+</div>
