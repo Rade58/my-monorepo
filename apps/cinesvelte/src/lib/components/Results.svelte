@@ -1,10 +1,13 @@
 <script lang="ts">
+  import { afterNavigate } from "$app/navigation";
   import { media } from "$lib/api";
   import type { MovieListResult } from "$lib/types";
-  import { onMount } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
 
   export let movies: MovieListResult[];
   export let next: string | null;
+
+  const dispatch = createEventDispatcher();
 
   let viewport: HTMLDivElement;
   let results: HTMLDivElement;
@@ -29,7 +32,9 @@
       item_width = first.offsetWidth;
       item_height = first.offsetHeight;
     }
-    num_columns = 4;
+    num_columns = Number(
+      getComputedStyle(results).getPropertyValue("--columns")
+    );
 
     //
     handle_scroll();
@@ -40,14 +45,29 @@
       currentTarget: EventTarget & HTMLDivElement;
     }
   ) {
+    const remaining =
+      viewport.scrollHeight - (viewport.scrollTop + viewport.clientHeight);
+
     //
+
+    if (remaining < 400) {
+      dispatch("end");
+    }
+
     a = Math.floor((viewport.scrollTop / item_height) * num_columns);
-    b = Math.floor(
-      ((viewport.scrollTop + viewport.clientHeight) / item_height) * num_columns
-    );
+    b =
+      Math.ceil((viewport.scrollTop + viewport.clientHeight) / item_height) *
+      num_columns;
+
+    paddingTop = Math.floor(a / num_columns) * item_height;
+    paddingBottom = Math.floor((movies.length - b) / num_columns) * item_height;
   }
 
   onMount(handle_resize);
+
+  afterNavigate(() => {
+    viewport.scrollTo(0, 0);
+  });
 </script>
 
 <svelte:window on:resize={handle_resize} />
@@ -60,7 +80,12 @@
   style="height: 500px"
   on:scroll={handle_scroll}
 >
-  <div bind:this={results} class="results column">
+  <div
+    bind:this={results}
+    class="results column"
+    style:padding-top="{paddingTop}px"
+    style:padding-bottom="{paddingBottom}px"
+  >
     {#each movies.slice(a, b) as movie}
       <a href="/movies/{movie.id}">
         <img src={media(movie.poster_path, 500)} alt={movie.title} /></a

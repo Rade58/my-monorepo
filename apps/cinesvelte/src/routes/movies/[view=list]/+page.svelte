@@ -9,5 +9,8 @@
   <Results
     movies={data.movies}
     next="/movies/{data.view}?page={data.next_page ? data.next_page : null}"
+    on:end={() => {
+      console.log("Todo - load some more data");
+    }}
   />
 </div>
