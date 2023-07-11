@@ -8,12 +8,17 @@ export async function load({ fetch }: LoadEvent) {
   // const response = await fetch(BASE + '/trending/movie/day')
 
   // const trending = await response.json() as MovieList;
-  const trending = (await api.get(fetch, "/trending/movie/day")) as MovieList;
+  const [trending, now_playing, upcoming] = await Promise.all([
+    api.get(fetch, "/trending/movie/day") as Promise<MovieList>,
+    api.get(fetch, "/movie/now_playing") as Promise<MovieList>,
+    api.get(fetch, "/movie/upcoming") as Promise<MovieList>,
+  ]);
+  /* const trending = (await api.get(fetch, "/trending/movie/day")) as MovieList;
   const now_playing = (await api.get(
     fetch,
     "/trending/now_playing"
   )) as MovieList;
-  const upcomming = (await api.get(fetch, "/trending/upcomming")) as MovieList;
+  const upcoming = (await api.get(fetch, "/trending/upcoming")) as MovieList; */
 
   const featured = trending.results[0];
 
@@ -27,6 +32,6 @@ export async function load({ fetch }: LoadEvent) {
     trending,
     featured_data,
     now_playing,
-    upcomming,
+    upcoming,
   };
 }
