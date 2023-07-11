@@ -4,10 +4,14 @@
   import type { View } from "$lib/views";
   export let movies: MovieList;
   export let view: View;
+  export let href: string;
 </script>
 
-<h2 class="carousel">
+<h2 class="column">
   {view.title}
+  {#if href}
+    <a {href}>see all</a>
+  {/if}
 </h2>
 
 <div class="carousel">
