@@ -5,13 +5,18 @@ import type { MovieList } from "$lib/types";
 
 export async function load({ params, url, fetch }: LoadEvent) {
   const view = views[params.view as string];
+  const page = url.searchParams.get("page") ?? "1";
 
-  const data = (await api.get(fetch, view.endpoint)) as MovieList;
+  const data = (await api.get(fetch, view.endpoint, {
+    page,
+  })) as MovieList;
   //
   //
   return {
+    view: params.view,
     title: view.title,
     endpoint: view.endpoint,
     movies: data.results,
+    next_page: data.page < data.total_pages ? data.page + 1 : null,
   };
 }
