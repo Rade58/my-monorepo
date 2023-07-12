@@ -74,12 +74,7 @@
 
 <p class="column">showing items {a} - {b}</p>
 
-<div
-  bind:this={viewport}
-  class="viewport"
-  style="height: 500px"
-  on:scroll={handle_scroll}
->
+<div bind:this={viewport} class="viewport" on:scroll={handle_scroll}>
   <div
     bind:this={results}
     class="results column"
@@ -99,7 +94,7 @@
 
 <style>
   .viewport {
-    height: 0;
+    height: 72vh;
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;

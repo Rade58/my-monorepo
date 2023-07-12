@@ -1,4 +1,5 @@
 <script>
+  import { page } from "$app/stores";
   import "../styles.css";
   import logo from "$lib/images/logo.svg";
   import moviedb from "$lib/images/moviedb.svg";
@@ -13,7 +14,7 @@
   </div>
 </nav>
 
-<main>
+<main class:infinite={$page.data.infinite}>
   <slot />
 </main>
 
@@ -73,5 +74,11 @@
     display: flex;
     justify-content: center;
     height: 5rem;
+  }
+
+  main.infinite {
+    height: 0;
+    flex: 1;
+    overflow: hidden;
   }
 </style>
