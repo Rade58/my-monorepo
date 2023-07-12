@@ -12,9 +12,11 @@ export async function get(
   const url = BASE + "/" + endpoint + "?" + q.toString();
 
   if (cache.has(url)) {
-    console.log("cache hit", url);
+    // console.log("cache hit", url);
     return cache.get(url);
   }
+  // console.log("cache miss", url);
+
   const response = await fetch(url);
   const data = await response.json();
 
