@@ -1,0 +1,67 @@
+version: '3.9'
+
+services:
+
+  # ADDING REDIS
+  # fancy-jackal-serv:
+    # image: redis:5.0.14
+    # container_name: fancy-jackal
+    # ports:
+      # - "6379:6379"
+    # volumes:
+      # - $PWD/redis-dev.conf:/usr/local/etc/redis/redis.conf
+    # command: redis-server --save 60 1 --requirepass jackal --loglevel warning
+        
+
+  # we can add another service for redis for example (but we don't need
+  # it currently)
+
+  # postgres service
+  lateralus-serv:
+    image: postgres:13.3
+    container_name: lateralus
+    environment:
+      - POSTGRES_USER=planet
+      - POSTGRES_PASSWORD=lucid
+      - POSTGRES_DB=lateralus-dev-db
+    ports:
+      - "5432:5432"
+    
+    #setting name for volume to be easier menagable 
+    volumes:
+      - my-lateralus-data:/var/lib/postgresql/lateralus/
+
+  # my-sql service
+  spacesuit-serv:
+    image: mysql:8.0
+    container_name: spacesuit
+    command: --default-authentication-plugin=mysql_native_password
+    # restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=lucidone
+      - MYSQL_DATABASE=spacesuit-dev-db
+      - MYSQL_USER=planet
+      - MYSQL_PASSWORD=lucidtwo
+    ports:
+      - "3306:3306"
+    volumes:
+      - spacedbdata:/var/lib/mysql
+
+  # my second postgres instance for cms 
+  # fancy-samoyed-serv:
+    # image: postgres:13.3
+    # container_name: fancy-samoyed
+    # environment:
+      # - POSTGRES_USER=atameht
+      # - POSTGRES_PASSWORD=gojira
+      # - POSTGRES_DB=fancy-samoyed-dev-db
+    # ports:
+      # - "5439:5432"
+    # 
+    # volumes:
+      # - my-samoyed-data:/var/lib/postgresql/samoyed/
+
+volumes:
+  my-lateralus-data:  # yes this is how you write it (without anything)
+  # my-samoyed-data:  # yes this is how you write it (without anything)
+  spacedbdata:
