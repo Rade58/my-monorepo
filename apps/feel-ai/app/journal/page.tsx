@@ -1,7 +1,7 @@
 import prisma from "@/lib/db";
 
 export default async function Journal() {
-  console.log("Hello World, Hello Lorem");
+  console.log("Hello World, Hello Lorem ipsum");
   //
   const neuUser = await prisma.feelUser.create({
     data: {
