@@ -1,0 +1,3 @@
+{
+  "buildCommand": "npx turbo run build --filter=cinesvelte --dry=json"
+}
