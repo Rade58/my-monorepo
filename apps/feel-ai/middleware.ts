@@ -8,6 +8,9 @@ export default authMiddleware({
   publicRoutes: ["/"],
 });
 
+// this middleware also protects api routes so
+// users needs to be signed in to access our api
+
 export const config = {
   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
 };

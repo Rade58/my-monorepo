@@ -14,7 +14,9 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { content }: { content: string } = await req.json();
+  // This is wrong because in this case we are not
+  // adding content yet
+  // const { content }: { content: string } = await req.json();
 
   const entry = await prisma.feelJournalEntry.create({
     data: {
@@ -23,7 +25,10 @@ export async function POST(req: NextRequest) {
           id: user.clerkId,
         },
       },
-      content,
+      // content,
+      // empty string because for adding content,
+      // we will use PUT
+      content: "",
     },
   });
 
