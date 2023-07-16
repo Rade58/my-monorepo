@@ -1,7 +1,7 @@
 "use client";
 
 import { createNewEntry } from "@/util/api";
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 
 export default function NewEntry() {
