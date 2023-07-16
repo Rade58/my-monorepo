@@ -1,5 +1,6 @@
 "use client";
 
+import { createNewEntry } from "@/util/api";
 import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 
@@ -7,12 +8,12 @@ export default function NewEntry() {
   const router = useRouter();
 
   const handleOnClick = async () => {
-    console.log("New Entry");
+    const data = await createNewEntry();
     // todo
     // make api you want to hit with this function
 
     //
-    // router.push(`/journal/${data.id}`)
+    router.push(`/journal/${data.id}`);
   };
 
   return (

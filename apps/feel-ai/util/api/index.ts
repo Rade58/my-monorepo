@@ -7,10 +7,16 @@ const createURL = (path: string) => {
 };
 
 // these are functions we call from frontend to hit api
-export async function createNewEntry(content: string) {
+export async function createNewEntry(/* content: string */) {
+  // made a mistake thinking I would need content here
+  // I will need content only when we make
+  // PUT request
+  // because there user will be editing his entry on page
+  // of the entry
+
   const res = await fetch(
     new Request(createURL("/api/journal"), {
-      body: JSON.stringify({ content }),
+      // body: JSON.stringify({ content }),
       headers: {
         "Content-Type": "application/json",
       },
