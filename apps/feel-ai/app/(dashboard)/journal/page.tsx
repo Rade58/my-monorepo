@@ -41,7 +41,7 @@ export default async function Journal() {
   console.log({ entries });
 
   return (
-    <div className="p-10">
+    <div className="p-10 h-full">
       <h2 className="text-3xl mb-8">Journal</h2>
       <div className="grid grid-cols-3 gap-4 p-10 bg-base-300">
         <NewEntry />
