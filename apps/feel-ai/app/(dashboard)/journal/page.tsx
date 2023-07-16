@@ -1,7 +1,9 @@
+import EntryCard from "@/components/EntryCard";
+import NewEntry from "@/components/NewEntry";
 import { prisma } from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
-import { currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+// import { currentUser } from "@clerk/nextjs";
+// import { redirect } from "next/navigation";
 
 async function getEntries() {
   const user = await getUserByClerkId({});
@@ -19,6 +21,9 @@ async function getEntries() {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        feelAnalysis: true,
+      },
     });
 
     return entries;
@@ -35,5 +40,15 @@ export default async function Journal() {
 
   console.log({ entries });
 
-  return <div>{entries.length}</div>;
+  return (
+    <div className="p-10">
+      <h2 className="text-3xl mb-8">Journal</h2>
+      <div className="grid grid-cols-3 gap-4 p-10">
+        <NewEntry />
+        {entries.map((entry) => (
+          <EntryCard key={entry.id} entry={entry} />
+        ))}
+      </div>
+    </div>
+  );
 }
