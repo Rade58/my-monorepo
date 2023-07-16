@@ -10,6 +10,16 @@ Only command you need to execute is
 npx prisma db push
 ```
 
+and to run studio
+
+```
+npx prisma studio
+```
+
+I don't have production and development datbase in this case
+
+But if I wanted I can do this, since I instaled dotenv-cli, and you just need to specify datbase conection strings inside `.env.development` and `.env.production`
+
 # I'm using planetscale and its cli
 
 
