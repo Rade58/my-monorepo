@@ -41,9 +41,9 @@ export default async function Journal() {
   console.log({ entries });
 
   return (
-    <div className="p-10 h-full">
+    <div className="p-10 h-full bg-base-300">
       <h2 className="text-3xl mb-8">Journal</h2>
-      <div className="grid grid-cols-3 gap-4 p-10 bg-base-300">
+      <div className="grid grid-cols-3 gap-4 p-10">
         <NewEntry />
         {entries.map((entry) => (
           <EntryCard key={entry.id} entry={entry} />
