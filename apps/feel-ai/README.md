@@ -1,3 +1,11 @@
+# Problems that need to be fixed
+
+## person who created workshop didn't think of case when user insted of navigating to signup route just click on google oauth
+
+in this case user will not ever be created in your database
+
+I'll fix this later
+
 # Nextjs related notes
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

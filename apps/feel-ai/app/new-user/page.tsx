@@ -3,25 +3,23 @@ import { auth, currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const createNewUser = async () => {
-  const { userId: id } = auth();
+  const { userId } = auth();
 
   const possibleUser = await prisma.feelUser.findUnique({
     where: {
-      id,
+      clerkId: userId,
     },
   });
 
   if (!possibleUser) {
     const { emailAddresses } = await currentUser();
 
-    const user = await prisma.feelUser.create({
+    await prisma.feelUser.create({
       data: {
-        clerkId: id,
+        clerkId: userId,
         email: emailAddresses[0].emailAddress,
       },
     });
-
-    return user;
   }
 
   // I don't know why are we oing this
