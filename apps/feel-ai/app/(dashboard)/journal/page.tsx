@@ -2,6 +2,7 @@ import EntryCard from "@/components/EntryCard";
 import NewEntry from "@/components/NewEntry";
 import { prisma } from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
+import Link from "next/link";
 // import { currentUser } from "@clerk/nextjs";
 // import { redirect } from "next/navigation";
 
@@ -46,7 +47,10 @@ export default async function Journal() {
       <div className="grid grid-cols-3 gap-4 p-10">
         <NewEntry />
         {entries.map((entry) => (
-          <EntryCard key={entry.id} entry={entry} />
+          // @ts-expect-error RSC
+          <Link key={entry.id} href={`/journal/${entry.id}`}>
+            <EntryCard entry={entry} />
+          </Link>
         ))}
       </div>
     </div>

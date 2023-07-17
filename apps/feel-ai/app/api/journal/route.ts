@@ -1,6 +1,15 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
+
+// why I did revalidation in this case?
+// We revalidated the page where all entries are rendered
+// creating new entry will not revalidate inital list of
+// entries on the page
+
+// so we are invalidating the cache so next time fresh data will be
+// displayed
 
 export async function POST(req: NextRequest) {
   const user = await getUserByClerkId({});
@@ -28,11 +37,13 @@ export async function POST(req: NextRequest) {
       // content,
       // empty string because for adding content,
       // we will use PUT
-      content: "",
+      content: "Write out your emotions and feelings",
     },
   });
 
-  console.log({ entry });
+  // console.log({ entry });
+
+  revalidatePath("/journal");
 
   return NextResponse.json(
     {

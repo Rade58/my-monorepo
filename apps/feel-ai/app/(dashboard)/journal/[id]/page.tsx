@@ -1,4 +1,4 @@
-export default function JornalEntryPage({
+export default function JournalEntryPage({
   params,
 }: {
   params: { id: string };
