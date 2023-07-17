@@ -48,9 +48,39 @@ export default async function JournalEntryPage({
 }) {
   const entry = await getEntryById(params.id);
 
+  const analysisData = [
+    { name: "Summary", value: "" },
+    { name: "Subject", value: "" },
+    { name: "Mood", value: "" },
+    { name: "Negative", value: false },
+  ];
+
   return (
-    <div>
-      <Editor entry={entry} />
+    <div className="h-full w-full grid grid-cols-3">
+      <div className="col-span-2">
+        <Editor entry={entry} />
+      </div>
+      <div className="border-l border-info bg-base-200">
+        {/* ai stuff */}
+        <div className="alert alert-info rounded-none">
+          <h2 className="text-2xl">Analysis</h2>
+        </div>
+        <div>
+          <ul>
+            {analysisData.map(({ name, value }) => {
+              return (
+                <li
+                  key={name}
+                  className="border-y border-info/20 px-2 py-4 flex items-center justify-between"
+                >
+                  <span className="text-lg font-semibold">{name}</span>
+                  <span>{value}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

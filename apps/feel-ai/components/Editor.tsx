@@ -30,7 +30,7 @@ export default function Editor({
         disabled={isLoading}
         onChange={(e) => setContent(e.target.value)}
         value={content}
-        className="textarea textarea-primary textarea-lg w-1/2"
+        className="textarea textarea-primary textarea-lg w-[90%]"
         // placeholder=""
       ></textarea>
       {isLoading && (
