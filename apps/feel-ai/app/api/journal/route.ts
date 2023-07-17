@@ -1,4 +1,4 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { /* type NextRequest ,*/ NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
@@ -11,7 +11,7 @@ import { getUserByClerkId } from "@/util/auth";
 // so we are invalidating the cache so next time fresh data will be
 // displayed
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   const user = await getUserByClerkId({});
 
   if (!user) {

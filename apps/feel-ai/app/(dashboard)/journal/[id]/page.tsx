@@ -6,6 +6,7 @@ async function getEntryById(id: string) {
   const user = await getUserByClerkId({});
 
   // if we didn't have compound index in the schema
+
   /* const entry = prisma.feelJournalEntry.findFirst({
     where: {
       AND: {
@@ -20,11 +21,16 @@ async function getEntryById(id: string) {
 
   // since I added compound index in the schema
   // we can use findUnique method
+
+  // conclusion would be that if you want to use
+  // findFirst, this would mean you should optimize
+  // your prisma schema to use compound index
+
   const entry = await prisma.feelJournalEntry.findUnique({
     where: {
       userId_id: {
         userId: user.id,
-        id,
+        id: id,
       },
     },
     include: {
