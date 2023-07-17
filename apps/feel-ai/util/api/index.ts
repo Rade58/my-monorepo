@@ -17,18 +17,16 @@ export async function createNewEntry(/* content: string */) {
   const res = await fetch(
     new Request(createURL("/api/journal"), {
       // body: JSON.stringify({ content }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
       method: "POST",
     })
   );
 
   if (res.ok) {
-    const {
-      data: { data },
-    }: { data: { data: FeelJournalEntry } } = await res.json();
-
+    const { data }: { data: FeelJournalEntry } = await res.json();
+    console.log({ data });
     return data;
   }
 }

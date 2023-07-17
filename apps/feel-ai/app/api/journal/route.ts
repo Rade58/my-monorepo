@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     data: {
       user: {
         connect: {
-          id: user.clerkId,
+          id: user.id,
         },
       },
       // content,
@@ -31,6 +31,8 @@ export async function POST(req: NextRequest) {
       content: "",
     },
   });
+
+  console.log({ entry });
 
   return NextResponse.json(
     {

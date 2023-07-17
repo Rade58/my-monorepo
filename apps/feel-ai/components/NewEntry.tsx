@@ -11,7 +11,7 @@ export default function NewEntry() {
     const data = await createNewEntry();
     // todo
     // make api you want to hit with this function
-
+    console.log({ data });
     //
     router.push(`/journal/${data.id}`);
   };
