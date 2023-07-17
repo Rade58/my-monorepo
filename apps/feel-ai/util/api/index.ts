@@ -29,4 +29,25 @@ export async function createNewEntry(/* content: string */) {
     console.log({ data });
     return data;
   }
+  return { data: null };
+}
+
+export async function updateEntry(id: string, content: string) {
+  const res = await fetch(
+    new Request(createURL(`/api/journal/${id}`), {
+      body: JSON.stringify({ content }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+    })
+  );
+
+  if (res.ok) {
+    const { data }: { data: FeelJournalEntry } = await res.json();
+    console.log({ data });
+    return data;
+  }
+
+  return { data: null };
 }
