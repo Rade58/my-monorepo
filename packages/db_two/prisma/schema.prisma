@@ -43,7 +43,20 @@ model FeelJournalEntry {
 
   feelAnalysis FeelAnalysis?
 
-  @@index([userId])
+  // we want to be able to query by the unique id
+  // and by the unique userId
+
+  // if uerId would be unique by itself (by adding @unique to the right)
+  // that would mean that one user can only have one entry
+  // when you would create new entry and connecting userId
+  // error would be thrown
+
+  // so
+  // @@index([userId])
+
+  // we are adding compound index
+
+  @@unique([userId, id])
 }
 
 model FeelAnalysis {
