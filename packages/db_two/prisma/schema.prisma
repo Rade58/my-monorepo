@@ -64,10 +64,16 @@ model FeelAnalysis {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  mood     String
-  summary  String  @db.Text
-  color    String
-  negative Boolean
+  mood           String
+  summary        String  @db.Text
+  color          String
+  negative       Boolean
+  subject        String
+  sentimentScore Int
+  emoji          String
+  solution       String
+
+  // 
 
   journalEntryId String
   journalEntry   FeelJournalEntry @relation(fields: [journalEntryId], references: [id])

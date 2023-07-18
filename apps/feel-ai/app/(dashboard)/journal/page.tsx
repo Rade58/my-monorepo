@@ -5,7 +5,8 @@ import { getUserByClerkId } from "@/util/auth";
 import Link from "next/link";
 // import { currentUser } from "@clerk/nextjs";
 // import { redirect } from "next/navigation";
-import { analize, analizeEntryContent } from "@/util/ai";
+// just to try out
+// import { analize, analizeEntryContent } from "@/util/ai";
 
 async function getEntries() {
   const user = await getUserByClerkId({});
@@ -54,7 +55,7 @@ async function getEntries() {
     ); */
 
     // we are testing this here
-    // we will use this but not here (we will use it on indiviidual entry page)
+    // we will use this but not here (we will use in one of api routes)
     // const analyzed = await analizeEntryContent(content);
     // console.log({ analyzed });
     return entries;

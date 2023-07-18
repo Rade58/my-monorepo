@@ -13,38 +13,46 @@ import { Document } from "langchain/document";
 
 import { z } from "zod";
 
-const parser = StructuredOutputParser.fromZodSchema(
-  z.object({
-    mood: z
-      .string()
-      .describe("The mood of the user who wrote the journal entry."),
-    subject: z.string().describe("The subject of the journal entry."),
-    negative: z
-      .boolean()
-      .describe(
-        "Was journal entry negative. If emotions in journal entry seems to be more negative should be 'true', or if emotions are positive, it should be 'false'."
-      ),
-    summary: z.string().describe("Quick summary of entiry entry."),
-    color: z
-      .string()
-      .describe(
-        "color in hexadecimal color code format (example '#2E95D3'), which should represent the mood of the entry."
-      ),
-    sentimentScore: z
-      .number()
-      .describe(
-        "Should be number between -10 and 10 (including -10 and 10), -10 represent most extreme negativity if entry is negative, and 10 i most positive rating, you should estimate this depending of severity of negativity or positivity of the entry."
-      ),
-    emoji: z
-      .string()
-      .describe(
-        "Just an emoji you can find which should be appropriate to describe emotion of the entry."
-      ),
-    solution: z
-      .string()
-      .describe("Concise solution; try to be creative as much as you can."),
-  })
-);
+const schema = z.object({
+  mood: z
+    .string()
+    .describe("The mood of the user who wrote the journal entry."),
+  subject: z.string().describe("The subject of the journal entry."),
+  negative: z
+    .boolean()
+    .describe(
+      "Was journal entry negative. If emotions in journal entry seems to be more negative should be 'true', or if emotions are positive, it should be 'false'."
+    ),
+  summary: z
+    .string()
+    .describe(
+      "Quick summary of entire entry. Sentence of two, depending of size of entire entry."
+    ),
+  color: z
+    .string()
+
+    .describe(
+      "color in hexadecimal color code format (example '#2E95D3'), which should represent the mood of the entry."
+    ),
+  sentimentScore: z
+    .number()
+    .describe(
+      "Should be number between -10 and 10 (including -10 and 10), -10 represent most extreme negativity if entry is negative, and 10 i most positive rating, you should estimate this depending of severity of negativity or positivity of the entry."
+    ),
+  emoji: z
+    .string()
+
+    .describe(
+      "Just an emoji you can find which should be appropriate to describe emotion of the entry."
+    ),
+  solution: z
+    .string()
+    .describe("Concise solution; try to be creative as much as you can."),
+});
+
+export type SchemaAiType = z.TypeOf<typeof schema>;
+
+const parser = StructuredOutputParser.fromZodSchema(schema);
 
 const getPrompt = async (content: string) => {
   const format_instructions = parser.getFormatInstructions();

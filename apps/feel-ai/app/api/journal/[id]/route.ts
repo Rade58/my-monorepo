@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
+import { analizeEntryContent, type SchemaAiType } from "@/util/ai";
 
 export async function PATCH(
   req: Request, // this is also NextRequest instance
@@ -29,8 +30,22 @@ export async function PATCH(
       },
     });
 
+    type RequiredSchemaAiType = Required<SchemaAiType>;
+    // use ai in here
+    const analysisData = (await analizeEntryContent(
+      content
+    )) as RequiredSchemaAiType;
+
+    const feelAnalysis = await prisma.feelAnalysis.upsert({
+      where: {
+        journalEntryId: updatedEntry.id,
+      },
+      create: { journalEntryId: updatedEntry.id, ...analysisData },
+      update: { ...analysisData },
+    });
+
     return NextResponse.json(
-      { data: updatedEntry },
+      { data: updatedEntry, feelAnalysis },
       {
         status: 200,
       }
