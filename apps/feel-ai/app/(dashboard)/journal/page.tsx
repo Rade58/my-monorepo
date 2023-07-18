@@ -5,6 +5,7 @@ import { getUserByClerkId } from "@/util/auth";
 import Link from "next/link";
 // import { currentUser } from "@clerk/nextjs";
 // import { redirect } from "next/navigation";
+import { analize } from "@/util/ai";
 
 async function getEntries() {
   const user = await getUserByClerkId({});
@@ -27,6 +28,28 @@ async function getEntries() {
       },
     });
 
+    // just testing prompt
+    /* const content =
+      "I wish to punch my chauvinistic father in the face. I'm shadow boxing again thinking to punch my father in the face, I'm yelling in my apartment. I'm so much angry.Childhood Memories of my father abusing my mother are flashing before my eyes";
+
+    await analize(
+      `I'm going to give you a journal entry.
+      You should analyze it and provide me a few things.
+      Format should be JSON (object). I need the 'mood' 
+      ( which value should be just one word or two if needed
+      at most and if it's special you can use 3), then I need
+      a 'summary' field for which you should summerize the
+      emotions of the journal entry, then I need 'subject'
+      you can conclude from entry, then 'color' that is coresponding
+      to the feeling or mood, and 'emoji' (when writing 'summary' talk to the user in firt person)
+      Also ad a 'solution' field where you should make an effor to provide
+      a 'solution' if user is felling negativelly,
+      and last field should be boolean called 'negative', where you should
+      put vlue true, if felling is negative and false if positive.
+      This is a journal entry I want you to analyze:
+      ${content}`
+    ); */
+
     return entries;
   }
 
@@ -39,7 +62,7 @@ async function getEntries() {
 export default async function Journal() {
   const entries = await getEntries();
 
-  console.log({ entries });
+  // console.log({ entries });
 
   return (
     <div className="p-10 h-full bg-base-300">
