@@ -5,7 +5,7 @@ import { getUserByClerkId } from "@/util/auth";
 import Link from "next/link";
 // import { currentUser } from "@clerk/nextjs";
 // import { redirect } from "next/navigation";
-import { analize } from "@/util/ai";
+import { analize, analizeEntryContent } from "@/util/ai";
 
 async function getEntries() {
   const user = await getUserByClerkId({});
@@ -28,10 +28,13 @@ async function getEntries() {
       },
     });
 
-    // just testing prompt
-    /* const content =
-      "I wish to punch my chauvinistic father in the face. I'm shadow boxing again thinking to punch my father in the face, I'm yelling in my apartment. I'm so much angry.Childhood Memories of my father abusing my mother are flashing before my eyes";
+    // analizeEntryContent
 
+    // just testing prompt we don't need any ai thing in here
+    // const content =
+    // "I wish to punch my chauvinistic father in the face. I'm shadow boxing again thinking to punch my father in the face, I'm yelling in my apartment. I'm so much angry.Childhood Memories of my father abusing my mother are flashing before my eyes";
+
+    /* 
     await analize(
       `I'm going to give you a journal entry.
       You should analyze it and provide me a few things.
@@ -50,6 +53,10 @@ async function getEntries() {
       ${content}`
     ); */
 
+    // we are testing this here
+    // we will use this but not here (we will use it on indiviidual entry page)
+    // const analyzed = await analizeEntryContent(content);
+    // console.log({ analyzed });
     return entries;
   }
 
