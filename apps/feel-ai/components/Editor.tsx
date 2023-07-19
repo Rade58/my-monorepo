@@ -39,6 +39,9 @@ export default function Editor({
           <span className="loading loading-spinner loading-lg"></span>
         </div>
       )}
+      {content === "" && (
+        <p className="text text-lg">Write out your emotions and feelings.</p>
+      )}
     </div>
   );
 }

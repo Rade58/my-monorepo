@@ -21,7 +21,7 @@ export const getUserByClerkId = async ({
 }) => {
   try {
     const { userId } = auth();
-    console.log({ clerkId: userId });
+    // console.log({ clerkId: userId });
     let isSelect = false;
     let isInclude = false;
 

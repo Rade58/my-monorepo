@@ -77,7 +77,9 @@ model FeelAnalysis {
   // 
 
   journalEntryId String
-  journalEntry   FeelJournalEntry @relation(fields: [journalEntryId], references: [id])
+  // Cascade opption in here means that error won't be thrown
+  // if we want to delete FeelJournalEntry
+  journalEntry   FeelJournalEntry @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
 
   @@unique([journalEntryId])
 }

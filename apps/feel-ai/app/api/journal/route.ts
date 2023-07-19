@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       // content,
       // empty string because for adding content,
       // we will use PUT
-      content: "Write out your emotions and feelings",
+      content: "",
     },
   });
 

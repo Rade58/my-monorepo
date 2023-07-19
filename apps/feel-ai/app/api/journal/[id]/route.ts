@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
 import { analizeEntryContent, type SchemaAiType } from "@/util/ai";
+import { revalidatePath } from "next/cache";
 
 export async function PATCH(
   req: Request, // this is also NextRequest instance
@@ -43,6 +44,9 @@ export async function PATCH(
       create: { journalEntryId: updatedEntry.id, ...analysisData },
       update: { ...analysisData },
     });
+
+    revalidatePath(`/journal/${updatedEntry.id}`);
+    revalidatePath(`/journal`);
 
     return NextResponse.json(
       { data: updatedEntry, feelAnalysis },
