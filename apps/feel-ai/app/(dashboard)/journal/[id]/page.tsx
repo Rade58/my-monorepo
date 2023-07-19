@@ -85,10 +85,10 @@ export default async function JournalEntryPage({
       : "";
   // `!bg-[#DC143C]`
   // : "";
-  const polarColor =
+  /*  const polarColor =
     entry && entry.feelAnalysis && entry.feelAnalysis.polarColor
       ? `!text-[${entry.feelAnalysis.polarColor}]`
-      : "";
+      : ""; */
 
   // console.log({ normalizedAnalizis });
   // return null;

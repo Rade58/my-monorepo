@@ -28,11 +28,16 @@ const schema = z.object({
     .describe(
       "Quick summary of entire entry. Sentence of two, depending of size of entire entry."
     ),
-  color: z
+  /* color: z
     .string()
 
     .describe(
       "Hexadecimal color format (example '#DC143C'), which should represent the feeling of a provided entry, for negative emotions use nuances from red to green, where red is worst nad green is best feeling or mood of a provided entry. Example for hapiness should be '#F87272' and for sadness is '#36D399'."
+    ), */
+  color: z
+    .string()
+    .describe(
+      "a hexidecimal color code the represents the mood of the entry. Example #0101fe for blue representing happiness."
     ),
   polarColor: z
     .string()
