@@ -1,4 +1,4 @@
-import { type FeelJournalEntry } from "db_two";
+import { type FeelJournalEntry, type FeelAnalysis } from "db_two";
 // this is just a helper since when we use fetch to hit api
 // routes we need absolute url
 const createURL = (path: string) => {
@@ -44,8 +44,11 @@ export async function updateEntry(id: string, content: string) {
   );
 
   if (res.ok) {
-    const { data }: { data: FeelJournalEntry } = await res.json();
-    console.log({ data });
+    const {
+      data,
+    }: { data: FeelJournalEntry & { feelAnalysis?: FeelAnalysis } } =
+      await res.json();
+    // console.log({ data });
     return data;
   }
 

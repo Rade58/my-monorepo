@@ -51,16 +51,7 @@ export default async function JournalEntryPage({
 
   return (
     <div className="h-full w-full grid grid-cols-3">
-      <div className="col-span-2">
-        <Editor entry={entry} />
-      </div>
-      <div className="border-l border-info bg-base-200">
-        {/* ai stuff */}
-        <div className="alert alert-info rounded-none">
-          <h2 className="text-2xl">Analysis</h2>
-        </div>
-        <div>{entry && entry.feelAnalysis && <Analysis entry={entry} />}</div>
-      </div>
+      <Editor entry={entry} />
     </div>
   );
 }

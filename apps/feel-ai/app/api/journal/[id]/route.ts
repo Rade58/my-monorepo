@@ -45,16 +45,21 @@ export async function PATCH(
       update: { ...analysisData },
     });
 
+    // I don't know if this is right
     revalidatePath(`/journal/${updatedEntry.id}`);
-    revalidatePath(`/journal`);
+    // revalidatePath(`/journal/[id]`);
+    // revalidatePath(`/journal`);
+    // console.log("SUCCESS!");
 
     return NextResponse.json(
-      { data: updatedEntry, feelAnalysis },
+      { data: { ...updatedEntry, feelAnalysis } },
       {
         status: 200,
       }
     );
   } catch (err) {
+    console.log({ err });
+
     return NextResponse.json(
       { error: "Something went wrong while trying to patch a journal entry!" },
       {
