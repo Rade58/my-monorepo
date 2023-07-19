@@ -12,6 +12,7 @@ import {
 import { Document } from "langchain/document";
 
 import { z } from "zod";
+import { type FeelJournalEntry } from "db_two";
 
 const schema = z.object({
   mood: z
@@ -101,7 +102,47 @@ export async function analizeEntryContent(content: string) {
   }
 }
 
+//
+//
+export async function qa(question: string, entries: FeelJournalEntry[]) {
+  const docs = entries.map(({ content, id, createdAt }) => {
+    return new Document({
+      pageContent: content,
+      metadata: {
+        id,
+        createdAt,
+      },
+    });
+  });
+
+  const model = new OpenAI({
+    temperature: 0,
+    modelName: "gpt-3.5-turbo",
+  });
+
+  const chain = loadQARefineChain(model);
+
+  const embeddings = new OpenAIEmbeddings();
+
+  const store = await MemoryVectorStore.fromDocuments(docs, embeddings);
+
+  const relevantDocs = await store.similaritySearch(question);
+
+  const res = await chain.call({
+    input_documents: relevantDocs,
+    question,
+  });
+
+  return res.output_text;
+}
+
 // just for testing out if open ai api is working for me
+//
+//
+//
+//
+//
+//
 //
 //
 export async function analize(content: string) {

@@ -1,5 +1,6 @@
 import EntryCard from "@/components/EntryCard";
 import NewEntry from "@/components/NewEntry";
+import Question from "@/components/Question";
 import { prisma } from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
 import Link from "next/link";
@@ -75,6 +76,9 @@ export default async function Journal() {
   return (
     <div className="p-10 h-full bg-base-300">
       <h2 className="text-3xl mb-8">Journal</h2>
+      <div className="my-8">
+        <Question />
+      </div>
       <div className="grid grid-cols-3 gap-4 p-10">
         <NewEntry />
         {entries.map((entry) => (
