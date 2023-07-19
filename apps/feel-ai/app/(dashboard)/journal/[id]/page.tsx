@@ -1,6 +1,7 @@
 import Editor from "@/components/Editor";
 import { prisma } from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
+import clsx from "clsx";
 
 async function getEntryById(id: string) {
   const user = await getUserByClerkId({});
@@ -48,13 +49,49 @@ export default async function JournalEntryPage({
 }) {
   const entry = await getEntryById(params.id);
 
-  const analysisData = [
+  /* const analysisData = [
     { name: "Summary", value: "" },
     { name: "Subject", value: "" },
     { name: "Mood", value: "" },
     { name: "Negative", value: false },
-  ];
+    { name: "sentimentScore", value: 0 },
+    { name: "emoji", value: "" },
+    { name: "solution", value: "" },
+  ]; */
 
+  const normalizedAnalizis = [];
+
+  if (entry && entry.feelAnalysis) {
+    for (let item in entry.feelAnalysis) {
+      if (
+        item !== "createdAt" &&
+        item !== "updatedAt" &&
+        item !== "journalEntryId" &&
+        // item !== "color" &&
+        item !== "polarColor" &&
+        item !== "id"
+      ) {
+        normalizedAnalizis.push({
+          name: item,
+          value: entry.feelAnalysis[item],
+        });
+      }
+    }
+  }
+
+  const color =
+    entry && entry.feelAnalysis && entry.feelAnalysis.color
+      ? `!bg-[${entry.feelAnalysis.color}]`
+      : "";
+  // `!bg-[#DC143C]`
+  // : "";
+  const polarColor =
+    entry && entry.feelAnalysis && entry.feelAnalysis.polarColor
+      ? `!text-[${entry.feelAnalysis.polarColor}]`
+      : "";
+
+  // console.log({ normalizedAnalizis });
+  // return null;
   return (
     <div className="h-full w-full grid grid-cols-3">
       <div className="col-span-2">
@@ -66,19 +103,42 @@ export default async function JournalEntryPage({
           <h2 className="text-2xl">Analysis</h2>
         </div>
         <div>
-          <ul>
-            {analysisData.map(({ name, value }) => {
-              return (
-                <li
-                  key={name}
-                  className="border-y border-info/20 px-2 py-4 flex items-center justify-between"
-                >
-                  <span className="text-lg font-semibold">{name}</span>
-                  <span>{value}</span>
-                </li>
-              );
-            })}
-          </ul>
+          {entry && entry.feelAnalysis && (
+            <ul>
+              {normalizedAnalizis.map(({ name, value }) => {
+                return (
+                  <li
+                    key={name}
+                    className={clsx(
+                      "border-y border-info/20 px-2 py-4 flex items-center justify-between",
+                      {
+                        [color]: name === "color",
+                      }
+                    )}
+                  >
+                    {name !== "color" && (
+                      <>
+                        <span className="text-lg text-info font-semibold">
+                          {name !== "sentimentScore" ? name : "sentiment score"}
+                        </span>
+                        <span
+                          className={clsx(
+                            "pl-4"
+                            // { [color]: name === "mood" },
+                            // { [polarColor]: name === "mood" }
+                          )}
+                        >
+                          {value === true && "true"}
+                          {value === false && "false"}
+                          {typeof value !== "boolean" && value}
+                        </span>
+                      </>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
       </div>
     </div>

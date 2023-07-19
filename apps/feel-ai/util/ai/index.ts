@@ -32,7 +32,12 @@ const schema = z.object({
     .string()
 
     .describe(
-      "color in hexadecimal color code format (example '#2E95D3'), which should represent the mood of the entry."
+      "Hexadecimal color format (example '#DC143C'), which should represent the feeling of a provided entry, for negative emotions use nuances from red to green, where red is worst nad green is best feeling or mood of a provided entry. Example for hapiness should be '#F87272' and for sadness is '#36D399'."
+    ),
+  polarColor: z
+    .string()
+    .describe(
+      "A hexadecimal color(example '#DC143C') which should be polar oposite of 'color' field, I want to use this color for text color to ensure good contrast."
     ),
   sentimentScore: z
     .number()

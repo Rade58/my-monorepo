@@ -67,6 +67,7 @@ model FeelAnalysis {
   mood           String
   summary        String  @db.Text
   color          String
+  polarColor     String
   negative       Boolean
   subject        String
   sentimentScore Int
