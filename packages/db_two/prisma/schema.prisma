@@ -87,7 +87,7 @@ model FeelAnalysis {
   user FeelUser @relation(fields: [userId], references: [id])
 
   @@unique([journalEntryId])
-  @@unique([userId])
+  @@index([userId])
 }
 
 // -------------------------------------------------------------
