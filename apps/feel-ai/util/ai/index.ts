@@ -104,7 +104,14 @@ export async function analizeEntryContent(content: string) {
 
 //
 //
-export async function qa(question: string, entries: FeelJournalEntry[]) {
+export async function qa(
+  question: string,
+  entries: {
+    id: string;
+    content: string;
+    createdAt: Date;
+  }[]
+) {
   const docs = entries.map(({ content, id, createdAt }) => {
     return new Document({
       pageContent: content,

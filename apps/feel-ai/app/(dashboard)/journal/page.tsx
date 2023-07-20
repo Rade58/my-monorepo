@@ -79,11 +79,15 @@ export default async function Journal() {
       <div className="my-8">
         <Question />
       </div>
-      <div className="grid grid-cols-3 gap-4 p-10">
+      <div className="grid grid-cols-3 gap-4 p-10 overflow-y-auto h-[69vh]">
         <NewEntry />
         {entries.map((entry) => (
           // @ts-expect-error RSC
-          <Link key={entry.id} href={`/journal/${entry.id}`}>
+          <Link
+            key={entry.id}
+            className="items-stretch content-stretch rounded-lg bg-base-100 shadow"
+            href={`/journal/${entry.id}`}
+          >
             <EntryCard entry={entry} />
           </Link>
         ))}

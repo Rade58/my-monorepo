@@ -47,11 +47,11 @@ export default async function JournalEntryPage({
 }: {
   params: { id: string };
 }) {
-  const entry = await getEntryById(params.id);
+  const initialEntry = await getEntryById(params.id);
 
   return (
     <div className="h-full w-full grid grid-cols-3">
-      <Editor entry={entry} />
+      <Editor entry={initialEntry} />
     </div>
   );
 }

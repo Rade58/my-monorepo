@@ -46,7 +46,7 @@ export async function PATCH(
     });
 
     // I don't know if this is right
-    revalidatePath(`/journal/${updatedEntry.id}`);
+    // revalidatePath(`/journal/${updatedEntry.id}`);
     // revalidatePath(`/journal/[id]`);
     // revalidatePath(`/journal`);
     // console.log("SUCCESS!");
