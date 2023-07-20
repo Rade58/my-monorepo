@@ -79,7 +79,7 @@ export default async function Journal() {
       <div className="my-8">
         <Question />
       </div>
-      <div className="grid grid-cols-3 gap-4 p-10 overflow-y-auto h-[69vh]">
+      <div className="grid grid-cols-3 gap-4 p-10 overflow-y-auto max-h-[69vh] min-h-[16vh]">
         <NewEntry />
         {entries.map((entry) => (
           // @ts-expect-error RSC
