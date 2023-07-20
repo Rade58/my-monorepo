@@ -4,7 +4,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { askQuestion } from "@/util/api";
 
 export default function Question() {
-  const [value, setValue] = useState<string>();
+  const [value, setValue] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [answerData, setAnswerData] = useState<string>("");
 
@@ -28,6 +28,8 @@ export default function Question() {
           disabled={isLoading}
           onChange={onChange}
           value={value}
+          name="question"
+          id="question"
           type="text"
           placeholder="Ask a question"
           className="input input-bordered input-secondary w-full max-w-xs mr-1"

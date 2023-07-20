@@ -1,35 +1,43 @@
+"use client";
+
+// Trying to use this component is not doing any rerendering
+// I don't have any idea why this is happening
+// I will investigate but untill I found solution
+// all of this logic will be inside    Editor     component
+// directlly
+
+// So so far this component is no-op, it's not being used
+// anywhere
+
 import clsx from "clsx";
-import type { FeelAnalysis, FeelJournalEntry } from "db_two";
+import type { FeelAnalysis } from "db_two";
 
 export default function Analysis({
-  entry,
+  feelAnalysis,
 }: {
-  entry: FeelJournalEntry & { feelAnalysis?: FeelAnalysis };
+  feelAnalysis: FeelAnalysis;
 }) {
   const normalizedAnalizis = [];
 
-  if (entry && entry.feelAnalysis) {
-    for (let item in entry.feelAnalysis) {
-      if (
-        item !== "createdAt" &&
-        item !== "updatedAt" &&
-        item !== "journalEntryId" &&
-        // item !== "color" &&
-        item !== "polarColor" &&
-        item !== "id"
-      ) {
-        normalizedAnalizis.push({
-          name: item,
-          value: entry.feelAnalysis[item],
-        });
-      }
+  for (let item in feelAnalysis) {
+    if (
+      item !== "createdAt" &&
+      item !== "updatedAt" &&
+      item !== "journalEntryId" &&
+      // item !== "color" &&
+      item !== "polarColor" &&
+      item !== "id"
+    ) {
+      normalizedAnalizis.push({
+        name: item,
+        value: feelAnalysis[item],
+      });
     }
   }
 
-  const color =
-    entry && entry.feelAnalysis && entry.feelAnalysis.color
-      ? `!bg-[${entry.feelAnalysis.color}]`
-      : "";
+  console.log({ normalizedAnalizis });
+
+  const color = feelAnalysis.color ? `!bg-[${feelAnalysis.color}]` : "";
 
   return (
     <ul>

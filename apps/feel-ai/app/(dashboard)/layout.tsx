@@ -7,7 +7,7 @@ interface LayoutProps {
 
 export default function DashboardLayout({ children }: LayoutProps) {
   return (
-    <div className="border-0 border-primary h-screen w-screen relative">
+    <div className="border-0 border-primary h-screen w-screen relative overflow-x-hidden">
       <aside className="absolute w-56 top-0 left-0 h-full border-r border-secondary/75">
         {/* @ts-expect-error RSC */}
         <Link href="/">Feelings</Link>
