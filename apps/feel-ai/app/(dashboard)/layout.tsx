@@ -6,6 +6,12 @@ interface LayoutProps {
 }
 
 export default function DashboardLayout({ children }: LayoutProps) {
+  const links = [
+    { name: "Home", href: "/" },
+    { name: "Journal", href: "/journal" },
+    { name: "History", href: "/history" },
+  ];
+
   return (
     <div className="border-0 border-primary h-screen w-screen relative overflow-x-hidden">
       <aside className="absolute w-56 top-0 left-0 h-full border-r border-secondary/75">
@@ -13,14 +19,14 @@ export default function DashboardLayout({ children }: LayoutProps) {
         <Link href="/">Feelings</Link>
         <div className="h-6"></div>
         <ul className="menu bg-base-100 w-52 mt-5">
-          <li>
-            {/* @ts-expect-error RSC */}
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            {/* @ts-expect-error RSC */}
-            <Link href="/journal">Journal</Link>
-          </li>
+          {links.map(({ href, name }) => {
+            return (
+              <li key={href}>
+                {/* @ts-expect-error RSC */}
+                <Link href={href}>{name}</Link>
+              </li>
+            );
+          })}
         </ul>
       </aside>
       <div className="ml-56 h-full">

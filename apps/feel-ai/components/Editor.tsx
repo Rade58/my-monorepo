@@ -30,6 +30,7 @@ export default function Editor({
       item !== "journalEntryId" &&
       // item !== "color" &&
       item !== "polarColor" &&
+      item !== "userId" &&
       item !== "id"
     ) {
       normalizedAnalizis.push({
@@ -63,7 +64,7 @@ export default function Editor({
       // i won't do anything with it
     },
   });
-  console.log({ feelAnalysis });
+  // console.log({ feelAnalysis });
   return (
     <>
       <div className="col-span-2">

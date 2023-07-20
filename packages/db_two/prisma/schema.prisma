@@ -29,6 +29,7 @@ model FeelUser {
   email   String @unique
 
   journalEntries FeelJournalEntry[]
+  analysis       FeelAnalysis[]
 }
 
 model FeelJournalEntry {
@@ -81,7 +82,12 @@ model FeelAnalysis {
   // if we want to delete FeelJournalEntry
   journalEntry   FeelJournalEntry @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
 
+  userId String
+
+  user FeelUser @relation(fields: [userId], references: [id])
+
   @@unique([journalEntryId])
+  @@unique([userId])
 }
 
 // -------------------------------------------------------------

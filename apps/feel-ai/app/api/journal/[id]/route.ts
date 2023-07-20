@@ -41,7 +41,11 @@ export async function PATCH(
       where: {
         journalEntryId: updatedEntry.id,
       },
-      create: { journalEntryId: updatedEntry.id, ...analysisData },
+      create: {
+        userId: user.id,
+        journalEntryId: updatedEntry.id,
+        ...analysisData,
+      },
       update: { ...analysisData },
     });
 
