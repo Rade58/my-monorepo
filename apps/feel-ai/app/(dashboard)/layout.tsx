@@ -16,7 +16,11 @@ export default function DashboardLayout({ children }: LayoutProps) {
     <div className="border-0 border-primary h-screen w-screen relative overflow-x-hidden">
       <aside className="absolute w-56 top-0 left-0 h-full border-r border-secondary/75">
         {/* @ts-expect-error RSC */}
-        <Link href="/">Feelings</Link>
+        <Link href="/">
+          <span className="font-bold text-2xl font-sans text-primary inline-block p-6">
+            Feel-AI:
+          </span>
+        </Link>
         <div className="h-6"></div>
         <ul className="menu bg-base-100 w-52 mt-5">
           {links.map(({ href, name }) => {
