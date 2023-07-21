@@ -54,7 +54,9 @@ export default function Question() {
       <dialog id="my_modal_1" className="modal">
         <form method="dialog" className="modal-box !w-min !h-min">
           {/* if there is a button in form, it will close the modal */}
-          <button className="btn">Close</button>
+          <button className="btn" disabled={isLoading}>
+            Close
+          </button>
         </form>
         <section className="rounded-xl bg-base-100 w-[96vw] h-[60vh] p-9 mx-auto">
           <form onSubmit={onSubmit}>
