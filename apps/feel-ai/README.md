@@ -6,6 +6,11 @@ in this case user will not ever be created in your database
 
 I'll fix this later
 
+# Testing dependancies
+```
+pnpm add @testing-library/jest-dom @testing-library/react vitest @vitejs/plugin-react-swc js-dom --filter feel-ai
+```
+
 # Nextjs related notes
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
