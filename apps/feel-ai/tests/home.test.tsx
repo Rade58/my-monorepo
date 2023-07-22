@@ -1,3 +1,6 @@
+// TESST DIDN'T WORK FOR ME
+// FOR SOME RESON CLERK THINKS THIS IS NOT /app TYPE OF
+// NEXTJS APP
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
 
@@ -14,8 +17,9 @@ vi.mock("@clerk/nextjs", () => {
         resolve({ userId: 'user_2NNEqL2nrIRdJ194ndJqAHwEfxC' })
       ), */
     auth: () => ({ userId: "user_2NNEqL2nrIRdJ194ndJqAHwEfxC" }),
-    //
+    // auth depends on it (maybe I don't need this)
     ClerkProvider: ({ children }) => <div>{children}</div>,
+    // no idea why this is mocked since I don't use it inside component
     useUser: () => ({
       isSignedIn: true,
       user: {
@@ -42,9 +46,5 @@ vi.mock("next/font/google", () => {
 test("Home", async () => {
   render(await HomePage());
 
-  expect(
-    screen.getByText(
-      "Welcome to Feel-AI, the revolutionary journal app powered by artificial intelligence."
-    )
-  ).toBeTruthy();
+  expect(screen.getByText("Start Journaling Now")).toBeTruthy();
 });
