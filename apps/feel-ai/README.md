@@ -8,8 +8,18 @@ I'll fix this later
 
 # Testing dependancies
 ```
-pnpm add @testing-library/jest-dom @testing-library/react vitest @vitejs/plugin-react-swc js-dom --filter feel-ai
+pnpm add @testing-library/jest-dom @testing-library/react vitest @vitejs/plugin-react-swc jsdom -D --filter feel-ai
 ```
+
+# typescript file only for tests, also a vite config since we will be running tests with vite
+
+`tsconfig.node.json`
+
+`vite.config.ts`
+
+Also we have this file:
+
+`setupTest.ts`
 
 # Nextjs related notes
 

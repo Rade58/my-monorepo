@@ -32,6 +32,11 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*"
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "eslint-config-custom": "workspace:*",
+    "jsdom": "^22.1.0",
+    "vitest": "^0.30.1"
   }
 }
