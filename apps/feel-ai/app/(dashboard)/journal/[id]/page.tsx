@@ -1,6 +1,6 @@
 import Analysis from "@/components/Analysis";
 import Editor from "@/components/Editor";
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
 
 async function getEntryById(id: string) {

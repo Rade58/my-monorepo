@@ -1,6 +1,6 @@
 import { PrismaClient } from "db_two";
 
-/* let prisma: PrismaClient;
+let prisma: PrismaClient;
 
 declare namespace global {
   let prisma: PrismaClient;
@@ -17,9 +17,9 @@ if (process.env.NODE_ENV === "production") {
   prisma = global.prisma;
 }
 
-export default prisma; */
+export default prisma;
 
-const globalForPrisma = globalThis as unknown as {
+/* const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
@@ -30,3 +30,4 @@ export const prisma =
   });
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+ */

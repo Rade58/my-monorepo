@@ -1,5 +1,5 @@
 import HistoryChart from "@/components/HistoryChart";
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
 
 async function getData() {

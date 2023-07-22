@@ -1,7 +1,7 @@
 import EntryCard from "@/components/EntryCard";
 import NewEntry from "@/components/NewEntry";
 import Question from "@/components/Question";
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
 import Link from "next/link";
 // import { currentUser } from "@clerk/nextjs";
