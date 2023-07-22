@@ -9,14 +9,14 @@ export default function HistoryChart({
 }) {
   return (
     // @ts-expect-error RSC
-    <ResponsiveContainer width="60%" height="50%">
+    <ResponsiveContainer width="60%" height="60%">
       {/* @ts-expect-error RSC */}
       <LineChart width={200} height={50} data={analyses}>
         {/* @ts-expect-error RSC */}
         <Line
           type="monotone"
           dataKey="sentimentScore"
-          stroke="red"
+          stroke="crimson"
           strokeWidth={2}
           activeDot={{ r: 8 }}
         />
@@ -52,10 +52,10 @@ function CustomTooltip({
     return (
       <div className="p-8 custom-tooltip bg-info/60 shadow-md text-base-content border-secondary/20 rounded-lg backdrop-blur-md relative">
         <div
-          className="absolute left-2 top-2 w-2 h-2 rounded-full"
-          style={{ background: analysis.color }}
+          className="absolute left-2 top-2 w-2 h-2 rounded-full bg-primary"
+          // style={{ background: analysis.color }}
         ></div>
-        <p className="label text-sm text-info/30">{dateLabel}</p>
+        <p className="label text-sm">{dateLabel}</p>
         <p className="intro text-xl uppercase">{analysis.mood}</p>
       </div>
     );
