@@ -40,7 +40,7 @@ vi.mock("next/font/google", () => {
 // test
 
 test("Home", async () => {
-  render(await Page());
+  render(await HomePage());
 
   expect(
     screen.getByText(
