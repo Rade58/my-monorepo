@@ -13,7 +13,7 @@
     "ts-node": "^10.9.1"
   },
   "scripts": {
-    "db:gen": "npx prisma generate",
+    "db:generate": "npx prisma generate",
     "db:push": "prisma db push --skip-generate",
     "---dbs--startup--and---kill---commands---(dev)---": "------------------first you run dbs-dev-up (in one termianal) after that you can run prisma comands in separate terminal__________",
     "dbs-dev-up": "docker-compose up",

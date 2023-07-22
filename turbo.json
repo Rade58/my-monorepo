@@ -12,6 +12,7 @@
     },
     "build": {
       "dependsOn": [
+        "^build",
         "^db:generate"
       ],
       "outputs": [

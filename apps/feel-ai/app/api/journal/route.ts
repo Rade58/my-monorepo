@@ -1,6 +1,6 @@
 import { /* type NextRequest ,*/ NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
 
 // why I did revalidation in this case?

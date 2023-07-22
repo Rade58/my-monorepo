@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { qa } from "@/util/ai";
 import { getUserByClerkId } from "@/util/auth";
 import { NextResponse, type NextRequest } from "next/server";

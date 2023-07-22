@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
+import prisma from "@/lib/db";
 import { getUserByClerkId } from "@/util/auth";
 import { analizeEntryContent, type SchemaAiType } from "@/util/ai";
 import { revalidatePath } from "next/cache";

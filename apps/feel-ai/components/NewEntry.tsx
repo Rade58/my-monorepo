@@ -13,7 +13,9 @@ export default function NewEntry() {
     // make api you want to hit with this function
     console.log({ data });
     //
-    router.push(`/journal/${data.id}`);
+    if ("id" in data) {
+      router.push(`/journal/${data.id}`);
+    }
   };
 
   return (
