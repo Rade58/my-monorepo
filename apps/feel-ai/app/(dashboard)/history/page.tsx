@@ -35,7 +35,7 @@ export default async function HistoryPage() {
   // console.log({ analyses });
 
   return (
-    <div className="h-full px-6 py-8">
+    <div className="h-[calc(100vh - 64px)] px-6 py-8">
       <h1 className="text-2xl text-secondary p-8">History: {average}</h1>
       <div className="w-full h-full flex justify-center">
         <HistoryChart analyses={analyses} />
