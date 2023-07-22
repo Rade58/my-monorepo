@@ -6,7 +6,7 @@ export default async function Home() {
   const { userId } = auth();
 
   const href = userId ? "/journal" : "/new-user";
-
+  //
   return (
     <div className="w-screen h-screen flex justify-center items-center">
       <div className="max-w-md mx-3">
