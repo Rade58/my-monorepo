@@ -1,3 +1,4 @@
+import TodoList from '@/components/TodoList';
 import db from '@/lib/db';
 
 async function getData() {
@@ -16,7 +17,8 @@ export default async function TodosPage() {
   return (
     <div>
       <h1 className="text-3xl text-primary ml-2">Todos Page</h1>
-      <pre>{JSON.stringify({ todos }, null, 2)}</pre>
+      {/* <pre>{JSON.stringify({ todos }, null, 2)}</pre> */}
+      <TodoList todos={todos} />
     </div>
   );
 }
