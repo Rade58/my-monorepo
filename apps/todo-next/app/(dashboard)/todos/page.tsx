@@ -2,6 +2,10 @@ import TodoList from '@/components/TodoList';
 import db from '@/lib/db';
 
 async function getData() {
+  // adding delay just to simulate awiting for result
+  // of network request
+  await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+  //
   const todos = await db.todo.findMany({
     orderBy: {
       createdAt: 'desc',
