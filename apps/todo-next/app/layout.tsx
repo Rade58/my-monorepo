@@ -1,9 +1,10 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Fira_Code } from 'next/font/google';
 import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
+const fira_code = Fira_Code({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Todo app',
@@ -58,7 +59,10 @@ export default function RootLayout({
                 </ul>
               </div>
               {/* @ts-expect-error RSC */}
-              <Link href="/" className="btn btn-ghost normal-case text-xl">
+              <Link
+                href="/"
+                className={`${fira_code.className} btn btn-ghost normal-case text-xl`}
+              >
                 Todo-Next
               </Link>
             </div>
