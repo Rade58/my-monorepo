@@ -1,5 +1,3 @@
-import { headers } from 'next/headers';
-
 export default function IndividualDocPage({
   params,
   searchParams,
@@ -8,7 +6,7 @@ export default function IndividualDocPage({
   searchParams: Record<string, string>;
 }) {
   return (
-    <div>
+    <div className="bg-base-100 text-base-content">
       Individual Doc {JSON.stringify(params.id)} {JSON.stringify(searchParams)}{' '}
     </div>
   );
