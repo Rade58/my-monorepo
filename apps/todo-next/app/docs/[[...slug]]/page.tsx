@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 function getData(slug: string[]) {
   const path = slug.join('/');
   // we are simulating datbase here
-  return (content as Record<string, string>)[path];
+  return (content as Record<string, string>)[path] || 'Comming soon';
 }
 
 export default function DocsPage({ params }: { params: { slug: string[] } }) {
@@ -22,7 +22,7 @@ export default function DocsPage({ params }: { params: { slug: string[] } }) {
     <div>
       <h1 className="text-3xl text-primary">Docs page</h1>
       <div>
-        {data.length ? <p className="text-xl">{data}</p> : <p>Comming soon</p>}
+        <p className="text-xl">{data}</p>
       </div>
     </div>
   );
