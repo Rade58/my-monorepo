@@ -4,6 +4,8 @@ import db from '@/lib/db';
 async function getData() {
   // adding delay just to simulate awiting for result
   // of network request
+  // because I want to show loader we render from loading.tsx
+  // while we await
   await new Promise((resolve, reject) => setTimeout(resolve, 2000));
   //
   const todos = await db.todo.findMany({
