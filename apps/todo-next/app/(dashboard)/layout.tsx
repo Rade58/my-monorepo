@@ -10,7 +10,7 @@ export default function DashboardLayout({
       <div>
         <h1 className="text-4xl mt-4 ml-2 text-primary">Todos Layout</h1>
       </div>
-      <div>
+      <div className="ml-4">
         <NewTodoForm />
       </div>
       <div>{children}</div>
