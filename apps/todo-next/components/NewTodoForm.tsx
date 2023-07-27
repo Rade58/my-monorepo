@@ -1,10 +1,10 @@
-import {} from '@/actions';
+import { newTodo } from '@/actions';
 //
 
 export default function NewTodoForm() {
   return (
     <div>
-      <form>
+      <form action={newTodo}>
         <input
           type="text"
           name="todo"

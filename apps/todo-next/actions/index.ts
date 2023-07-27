@@ -1,5 +1,8 @@
 'use server';
 
+// In order to be able to use this feature
+// I added experimental flag in next config file
+
 import db from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 

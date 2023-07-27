@@ -9,7 +9,7 @@ export default function Todo({
 }) {
   return (
     <div
-      className={`px-8 py-2 border border-primary/25 cursor-pointer ${
+      className={`px-8 py-2 border-b-2 border-primary/70 cursor-pointer ${
         completed ? 'line-through text-base-content/50' : ''
       }`}
     >
