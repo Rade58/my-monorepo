@@ -1,3 +1,13 @@
+# Prisma related
+
+Initialize prisma with sqlite as datasource
+
+```
+npx prisma init --datasource-provider sqlite
+```
+
+# Nextjs related
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
