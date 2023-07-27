@@ -1,3 +1,5 @@
+import NewTodoForm from '@/components/NewTodoForm';
+
 export default function DashboardLayout({
   children,
 }: {
@@ -8,7 +10,9 @@ export default function DashboardLayout({
       <div>
         <h1 className="text-4xl mt-4 ml-2 text-primary">Todos Layout</h1>
       </div>
-      <div>{/*  */}</div>
+      <div>
+        <NewTodoForm />
+      </div>
       <div>{children}</div>
     </div>
   );
