@@ -2,6 +2,8 @@ import TodoList from '@/components/TodoList';
 import db from '@/lib/db';
 
 async function getData() {
+  // throw new Error('Hello Error!');
+
   // adding delay just to simulate awiting for result
   // of network request
   // because I want to show loader we render from loading.tsx
